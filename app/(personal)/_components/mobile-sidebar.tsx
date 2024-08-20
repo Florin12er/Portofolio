@@ -1,28 +1,43 @@
 "use client";
-import { ModeToggle } from "@/components/mode-toggle";
+import { useState } from "react";
 import Link from "next/link";
-import { MobileNavbar } from "@/app/(personal)/_components/mobile-sidebar";
+import { Menu, X } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
-export const Navbar = () => {
+export const MobileNavbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Sebastian Portfolio
-            </h1>
-          </div>
-          <div className="hidden md:flex items-center space-x-4">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/projects">Projects</NavLink>
-            <NavLink href="/blogs">Blogs</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
+    <div className="md:hidden">
+      <button
+        onClick={toggleMenu}
+        className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+      {isOpen && (
+        <div className="absolute top-16 left-0 right-0 bg-white dark:bg-gray-800 shadow-md">
+          <nav className="flex flex-col p-4 space-y-2">
+            <NavLink href="/" onClick={toggleMenu}>
+              Home
+            </NavLink>
+            <NavLink href="/projects" onClick={toggleMenu}>
+              Projects
+            </NavLink>
+            <NavLink href="/blogs" onClick={toggleMenu}>
+              Blogs
+            </NavLink>
+            <NavLink href="/contact" onClick={toggleMenu}>
+              Contact
+            </NavLink>
             <a
               href="https://github.com/Florin12er/Portofolio" // Replace with your GitHub URL
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors duration-200"
+              className="flex items-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              onClick={toggleMenu}
             >
               <div>
                 <svg
@@ -37,26 +52,31 @@ export const Navbar = () => {
                   ></path>
                 </svg>
               </div>
+              GitHub
             </a>
-            <ModeToggle />
-          </div>
-          <MobileNavbar />
+            <div className="pt-2">
+              <ModeToggle />
+            </div>
+          </nav>
         </div>
-      </div>
-    </nav>
+      )}
+    </div>
   );
 };
 
 const NavLink = ({
   href,
   children,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
+  onClick: () => void;
 }) => (
   <Link
     href={href}
     className="text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+    onClick={onClick}
   >
     {children}
   </Link>
