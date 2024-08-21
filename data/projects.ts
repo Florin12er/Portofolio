@@ -23,7 +23,7 @@ export const projectsData: Project[] = [
     imageUrl: "/images/rock-paper.png",
     livePreviewUrl: "https://rock-paper-scrissor-2.vercel.app",
     liveUrl: "https://rock-paper-scrissor-2.vercel.app",
-    githubUrl: "https://github.com/yourusername/nextjs-portfolio",
+    githubUrl: "https://github.com/Florin12er/Rock-paper-scrissor_2",
     technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },

@@ -86,7 +86,7 @@ export default function Projects() {
                 {project.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 cursor-pointer"
+                    className="bg-gray-200 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 cursor-pointer"
                     onClick={() => {
                       setSearchTerm(tag);
                       router.push(

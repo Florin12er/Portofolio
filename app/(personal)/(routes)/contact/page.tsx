@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
+import {
+  FaTwitter,
+  FaGithub,
+  FaEnvelope,
+  FaCheck,
+  FaTimes,
+} from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -12,18 +18,54 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { Alert } from "@/components/ui/alert";
+
+type StatusType = {
+  variant: "success" | "destructive";
+  message: string;
+} | null;
 
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<StatusType>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", { name, email, message });
-    setName("");
-    setEmail("");
-    setMessage("");
+    setStatus(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        setStatus({
+          variant: "success",
+          message: "Message sent successfully!",
+        });
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        const data = await response.json();
+        setStatus({
+          variant: "destructive",
+          message: data.message || "Failed to send message. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus({
+        variant: "destructive",
+        message: "An error occurred. Please try again later.",
+      });
+    }
   };
 
   return (
@@ -31,7 +73,6 @@ const Contact = () => {
       <h1 className="text-4xl font-bold mb-8 text-center">Contact Me</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
-        {/* Contact Form */}
         <Card className="md:w-2/3">
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>
@@ -80,11 +121,22 @@ const Contact = () => {
               <Button type="submit" className="w-full">
                 Send Message
               </Button>
+              {status && (
+                <Alert variant={status.variant} className="mt-4">
+                  <div className="flex items-center">
+                    {status.variant === "success" ? (
+                      <FaCheck className="mr-2 h-4 w-4" />
+                    ) : (
+                      <FaTimes className="mr-2 h-4 w-4" />
+                    )}
+                    <span>{status.message}</span>
+                  </div>
+                </Alert>
+              )}
             </form>
           </CardContent>
         </Card>
 
-        {/* Contact Information */}
         <Card className="md:w-1/3">
           <CardHeader>
             <CardTitle>Get in Touch</CardTitle>
@@ -97,32 +149,32 @@ const Contact = () => {
             <div className="flex items-center space-x-4">
               <FaEnvelope className="text-gray-600 dark:text-gray-400" />
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:sebastianflorin603@gmail.com"
                 className="text-blue-600 hover:underline"
               >
-                your.email@example.com
+                sebastianflorin603@gmail
               </a>
             </div>
             <div className="flex items-center space-x-4">
               <FaTwitter className="text-blue-400" />
               <a
-                href="https://twitter.com/yourusername"
+                href="https://twitter.com/florin12er"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                @yourusername
+                @florin12er
               </a>
             </div>
             <div className="flex items-center space-x-4">
               <FaGithub className="text-gray-800 dark:text-gray-200" />
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/Florin12er"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
-                github.com/yourusername
+                github.com/Florin12er
               </a>
             </div>
           </CardContent>

@@ -56,7 +56,11 @@ export default function BlogPostPreview({
         <CardFooter className="flex justify-between items-center">
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="bg-blue-800">
+              <Badge
+                key={tag}
+                variant="secondary"
+                className="bg-gray-200 dark:bg-gray-700"
+              >
                 {tag}
               </Badge>
             ))}
