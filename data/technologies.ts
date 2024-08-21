@@ -13,7 +13,7 @@ import {
 } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
 
-export const allTechnologies = [
+export const skills = [
   {
     name: "React",
     icon: FaReact,

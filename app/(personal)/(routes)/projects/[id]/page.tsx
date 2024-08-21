@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import { allTechnologies } from "@/data/technologies";
+import { skills } from "@/data/technologies";
 import { projectsData } from "@/data/projects";
 // Mock data (replace with actual data fetching logic)
 export default function ProjectPage({ params }: { params: { id: string } }) {
@@ -19,7 +19,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  const projectTechnologies = allTechnologies.filter((tech) =>
+  const projectTechnologies = skills.filter((tech) =>
     project.technologies.includes(tech.name),
   );
 
@@ -39,7 +39,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Project Preview */}
-      <div className="mb-8 relative h-[400px] overflow-hidden rounded-lg shadow-lg">
+      <div className="mb-8 relative h-[700px] overflow-hidden rounded-lg shadow-lg">
         {previewType === "image" ? (
           <Image
             src={project.imageUrl}

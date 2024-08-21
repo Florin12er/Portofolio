@@ -1,7 +1,8 @@
 // app/page.tsx
-import { allTechnologies } from "@/data/technologies";
 import Image from "next/image";
+import { skills } from "@/data/technologies";
 import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12">
@@ -46,7 +47,7 @@ export default function Home() {
       <section>
         <h2 className="text-3xl font-semibold mb-6">Skills</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-          {allTechnologies.map((skill, index) => {
+          {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
               <Link

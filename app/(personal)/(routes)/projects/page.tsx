@@ -1,6 +1,6 @@
 "use client";
-// pages/projects.tsx
-import { useState, useEffect } from "react";
+
+import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
@@ -14,41 +14,28 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { projectsData } from "@/data/projects";
 
-// Mock data for projects (replace with actual data from your GitHub)
-const projectsData = [
-  {
-    id: 1,
-    name: "NextJS Portfolio",
-    description:
-      "A personal portfolio website built with Next.js and Tailwind CSS.",
-    tags: ["Next.js", "React", "Tailwind CSS"],
-    githubUrl: "https://github.com/yourusername/nextjs-portfolio",
-    liveUrl: "https://your-portfolio.com",
-  },
-  {
-    id: 2,
-    name: "React Task Manager",
-    description: "A task management application with React and Redux.",
-    tags: ["React", "Redux", "JavaScript"],
-    githubUrl: "https://github.com/yourusername/react-task-manager",
-    liveUrl: "https://your-task-manager.com",
-  },
-  // Add more projects as needed
-];
+interface SearchParamsHandlerProps {
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default function Projects() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
+function SearchParamsHandler({ setSearchTerm }: SearchParamsHandlerProps) {
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    // Get the search query from the URL when the component mounts or the URL changes
+  React.useEffect(() => {
     const search = searchParams.get("search");
     if (search) {
       setSearchTerm(search);
     }
-  }, [searchParams]);
+  }, [searchParams, setSearchTerm]);
+
+  return null;
+}
+
+export default function Projects() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const router = useRouter();
 
   const filteredProjects = projectsData.filter(
     (project) =>
@@ -62,21 +49,24 @@ export default function Projects() {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
-    // Update the URL with the new search term
-    const params = new URLSearchParams(searchParams);
-    params.set("search", newSearchTerm);
-    router.push(`/projects?${params.toString()}`);
+    router.push(`/projects?search=${encodeURIComponent(newSearchTerm)}`, {
+      scroll: false,
+    });
   };
 
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold mb-8 text-center">My Projects</h1>
 
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchParamsHandler setSearchTerm={setSearchTerm} />
+      </Suspense>
+
       {/* Search Input */}
       <div className="mb-8">
         <Input
           type="text"
-          placeholder="Search projects by name, description, or technology..."
+          placeholder="Search projects..."
           value={searchTerm}
           onChange={handleSearchChange}
           className="max-w-md mx-auto"
@@ -99,9 +89,10 @@ export default function Projects() {
                     className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 cursor-pointer"
                     onClick={() => {
                       setSearchTerm(tag);
-                      const params = new URLSearchParams(searchParams);
-                      params.set("search", tag);
-                      router.push(`/projects?${params.toString()}`);
+                      router.push(
+                        `/projects?search=${encodeURIComponent(tag)}`,
+                        { scroll: false },
+                      );
                     }}
                   >
                     {tag}
