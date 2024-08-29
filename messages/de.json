@@ -1,0 +1,98 @@
+{
+  "Navigation": {
+    "home": "Startseite",
+    "projects": "Projekte",
+    "blogs": "Blogs",
+    "contact": "Kontakt",
+    "sebastianPortfolio": "Sebastians Portfolio"
+  },
+  "LanguageSwitcher": {
+    "language": "{language}"
+  },
+  "Home": {
+    "welcome": "Willkommen in meinem Portfolio",
+    "subtitle": "Full-Stack Entwickler | Autodidakt | Tech-Enthusiast",
+    "getInTouch": "Kontakt aufnehmen",
+    "aboutMe": "Über mich",
+    "profileAlt": "Profilbild",
+    "aboutDescription": "Ich bin ein autodidaktischer Fullstack-Entwickler mit Leidenschaft für die Erstellung innovativer Weblösungen. Meine Expertise umfasst:",
+    "skillsFrontend": "Frontend: JavaScript, React, CSS, HTML und Tailwind",
+    "skillsBackend": "Backend: Node.js, Go und Java Spring",
+    "skillsDatabases": "Datenbanken: MongoDB, PostgreSQL und MySQL",
+    "skillsDevOps": "DevOps: Linux, Bash und Zsh-Scripting",
+    "collaborationInvitation": "Ich freue mich darauf, an Projekten mitzuarbeiten oder Vollzeitmöglichkeiten zu erkunden. Lassen Sie uns gemeinsam etwas Großartiges schaffen!",
+    "skills": "Fähigkeiten"
+  },
+  "Footer": {
+    "quickLinks": "Schnellzugriff",
+    "home": "Startseite",
+    "projects": "Projekte",
+    "blogs": "Blogs",
+    "contact": "Kontakt",
+    "githubAriaLabel": "Besuchen Sie mein GitHub-Profil",
+    "twitterAriaLabel": "Besuchen Sie mein Twitter-Profil",
+    "copyright": "© {year} Sebastian Portfolio. Alle Rechte vorbehalten."
+  },
+
+  "Contact": {
+    "getInTouch": "Kontakt aufnehmen",
+    "sendMessage": "Eine Nachricht senden",
+    "formDescription": "Ich würde gerne von Ihnen hören! Füllen Sie das untenstehende Formular aus, um Kontakt aufzunehmen.",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "sendButton": "Nachricht senden",
+    "messageSentSuccess": "Nachricht erfolgreich gesendet!",
+    "messageSentError": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.",
+    "connectWithMe": "Verbinden Sie sich mit mir",
+    "socialDescription": "Sie können mich gerne über soziale Medien oder E-Mail kontaktieren."
+  },
+  "Blogs": {
+    "pageTitle": "Meine Blogbeiträge",
+    "searchPlaceholder": "Blogs durchsuchen...",
+    "noPostsFound": "Keine Blogbeiträge gefunden, die Ihrer Suche entsprechen.",
+    "fetchError": "Fehler beim Abrufen der Blogbeiträge:"
+  },
+  "Projects": {
+    "pageTitle": "Meine Projekte",
+    "loading": "Laden...",
+    "searchPlaceholder": "Projekte durchsuchen...",
+    "viewDetails": "Details anzeigen",
+    "viewGitHub": "Auf GitHub ansehen",
+    "viewLive": "Live-Site ansehen",
+    "noProjectsFound": "Keine Projekte gefunden, die Ihrer Suche entsprechen."
+  },
+  "ProjectPage": {
+    "livePreview": "Live-Vorschau",
+    "imagePreview": "Bildvorschau",
+    "projectScreenshot": "Screenshot von {projectName}",
+    "livePreviewTitle": "Live-Vorschau von {projectName}",
+    "livePreviewNotAvailable": "Live-Vorschau nicht verfügbar",
+    "livePreviewNotAvailableDescription": "Für dieses Projekt ist derzeit keine Live-Vorschau verfügbar.",
+    "projectDescription": "Projektbeschreibung",
+    "technologiesUsed": "Verwendete Technologien",
+    "viewLiveProject": "Live-Projekt ansehen",
+    "viewOnGitHub": "Auf GitHub ansehen"
+  },
+  "Blog": {
+    "commentAdded": "Kommentar hinzugefügt",
+    "commentAddedDescription": "Danke für Ihre Bewertung. Es wird auf der Blogseite in Klarheit versandt.",
+    "likeAdded": "Like hinzugefügt",
+    "likeAddedDescription": "Danke für Ihre Bewertung. Es wird auf der Blogseite in Klarheit versandt.",
+    "likeFailed": "Sie haben bereits diesen Blog bewertet.",
+    "likeFailedDescription": "Danke für Ihre Bewertung.",
+    "linkCopied": "Link kopiert",
+    "linkCopiedDescription": "Link zum Clipboard kopiert.",
+    "minutesRead": "Minuten gelesen",
+    "comments": "Kommentare",
+    "likes": "Likes",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "name": "Deine Name",
+    "commentPlaceholder": "Deine Bewertung",
+    "submiting": "einreichen...",
+    "submitComment": "Kommentar einreichen",
+    "backToAllBlogs": "Zurück zur Blogliste",
+    "share": "Teilen"
+  }
+}

@@ -4,17 +4,18 @@ date: "2023-08-21"
 tags: ["nextjs", "react", "webdev"]
 ---
 
-This is the content of my first blog post. It's written in Markdown!
-```javascript
-console.log("Hello, world!");
-```
+# My Blog Post
 
-[A link](https://example.com)
-This is the content of my first blog post. It's written in Markdown!
-```javascript
-console.log("Hello, world!");
-```
+Here's some regular content.
 
-[A link](https://example.com)
+<div class="tip">
+This is a helpful tip for your readers!
+</div>
 
+<div class="error">
+This is an error message or warning.
+</div>
 
+<div class="note">
+This is an important note to remember.
+</div>

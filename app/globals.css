@@ -98,4 +98,17 @@
     animation: rotate-360 0.5s ease-in-out forwards;
     /* Adjust duration for speed */
 }
+/* Add this to your global CSS file */
+.toc {
+  list-style-type: none;
+  padding-left: 0;
+}
 
+.toc a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}

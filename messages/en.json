@@ -1,0 +1,97 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "blogs": "Blogs",
+    "contact": "Contact",
+    "sebastianPortfolio": "Sebastian's Portfolio"
+  },
+  "LanguageSwitcher": {
+    "language": "{language}"
+  },
+  "Home": {
+    "welcome": "Welcome to My Portfolio",
+    "subtitle": "Full-Stack Developer | Self-taught | Tech Enthusiast",
+    "getInTouch": "Get in Touch",
+    "aboutMe": "About Me",
+    "profileAlt": "Profile Picture",
+    "aboutDescription": "I am a self-taught Fullstack developer passionate about creating innovative web solutions. My expertise spans across:",
+    "skillsFrontend": "Frontend: JavaScript, React, CSS, HTML, and Tailwind",
+    "skillsBackend": "Backend: Node.js, Go, and Java Spring",
+    "skillsDatabases": "Databases: MongoDB, PostgreSQL, and MySQL",
+    "skillsDevOps": "DevOps: Linux, Bash, and Zsh scripting",
+    "collaborationInvitation": "I'm eager to collaborate on projects or explore full-time opportunities. Let's create something amazing together!",
+    "skills": "Skills"
+  },
+  "Footer": {
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "projects": "Projects",
+    "blogs": "Blogs",
+    "contact": "Contact",
+    "githubAriaLabel": "Visit my GitHub profile",
+    "twitterAriaLabel": "Visit my Twitter profile",
+    "copyright": "© {year} Sebastian Portfolio. All rights reserved."
+  },
+  "Contact": {
+    "getInTouch": "Get in Touch",
+    "sendMessage": "Send a Message",
+    "formDescription": "I'd love to hear from you! Fill out the form below to get in touch.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "sendButton": "Send Message",
+    "messageSentSuccess": "Message sent successfully!",
+    "messageSentError": "Failed to send message. Please try again.",
+    "generalError": "An error occurred. Please try again later.",
+    "connectWithMe": "Connect with Me",
+    "socialDescription": "Feel free to reach out through social media or email."
+  },
+  "Blogs": {
+    "pageTitle": "My Blog Posts",
+    "searchPlaceholder": "Search blogs...",
+    "noPostsFound": "No blog posts found matching your search.",
+    "fetchError": "Error fetching blog posts:"
+  },
+  "Projects": {
+    "pageTitle": "My Projects",
+    "loading": "Loading...",
+    "searchPlaceholder": "Search projects...",
+    "viewDetails": "View Details",
+    "viewGitHub": "View on GitHub",
+    "viewLive": "View Live Site",
+    "noProjectsFound": "No projects found matching your search."
+  },
+  "ProjectPage": {
+    "livePreview": "Live Preview",
+    "imagePreview": "Image Preview",
+    "projectScreenshot": "Screenshot of {projectName}",
+    "livePreviewTitle": "Live preview of {projectName}",
+    "livePreviewNotAvailable": "Live preview not available",
+    "livePreviewNotAvailableDescription": "This project doesn't have a live preview at the moment.",
+    "projectDescription": "Project Description",
+    "technologiesUsed": "Technologies Used",
+    "viewLiveProject": "View Live Project",
+    "viewOnGitHub": "View on GitHub"
+  },
+  "Blog": {
+    "commentAdded": "Comment Added",
+    "commentAddedDescription": "Thank you for your comment. It will be posted on the blog shortly.",
+    "likeAdded": "Like Added",
+    "likeAddedDescription": "Thank you for your like. It will be posted on the blog shortly.",
+    "likeFailed": "You have already liked this Blog.",
+    "likeFailedDescription": "Thank you for your like. anyway.",
+    "linkCopied": "Link Copied",
+    "linkCopiedDescription": "Link copied to clipboard.",
+    "minutesRead": "Minutes Read",
+    "comments": "Comments",
+    "likes": "Likes",
+    "tableOfContents": "Table of Contents",
+    "name": "Your Name",
+    "commentPlaceholder": "Your Comment",
+    "submiting": "submitting...",
+    "submitComment": "Submit Comment",
+    "backToAllBlogs": "Back to All Blogs",
+    "share": "Share"
+  }
+}

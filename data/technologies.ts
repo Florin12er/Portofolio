@@ -1,5 +1,5 @@
 // data/technologies.ts
-
+import { IconType } from "react-icons";
 import { FaReact, FaNodeJs, FaGitAlt, FaJava, FaLinux } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -13,7 +13,13 @@ import {
 } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
 
-export const skills = [
+export interface Skill {
+  name: string;
+  icon: IconType;
+  color: string;
+  animation: string;
+}
+export const skills: Skill[] = [
   {
     name: "React",
     icon: FaReact,

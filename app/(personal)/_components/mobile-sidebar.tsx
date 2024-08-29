@@ -1,3 +1,4 @@
+// components/MobileNavbar.tsx
 "use client";
 
 import { useState } from "react";
@@ -12,18 +13,23 @@ import {
   SheetTrigger,
   SheetDescription,
 } from "@/components/ui/sheet";
-
-const navItems = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/projects", label: "Projects", icon: Briefcase },
-  { href: "/blogs", label: "Blogs", icon: BookOpen },
-  { href: "/contact", label: "Contact", icon: Mail },
-];
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Navigation");
+  const locale = useLocale();
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const navItems = [
+    { href: `/${locale}`, label: t("home"), icon: Home },
+    { href: `/${locale}/projects`, label: t("projects"), icon: Briefcase },
+    { href: `/${locale}/blogs`, label: t("blogs"), icon: BookOpen },
+    { href: `/${locale}/contact`, label: t("contact"), icon: Mail },
+  ];
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -34,7 +40,7 @@ export const MobileNavbar = () => {
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <SheetDescription className="sr-only">
-          Navigation menu for mobile devices
+          {t("mobileNavDescription")}
         </SheetDescription>
         <nav className="flex flex-col space-y-4 mt-8">
           {navItems.map((item) => (
@@ -55,8 +61,9 @@ export const MobileNavbar = () => {
           >
             GitHub
           </NavLink>
-          <div className="pt-4">
+          <div className="pt-4 flex items-center space-x-4">
             <ModeToggle />
+            <LanguageSwitcher />
           </div>
         </nav>
       </SheetContent>

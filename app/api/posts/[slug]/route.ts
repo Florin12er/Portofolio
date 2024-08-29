@@ -3,9 +3,6 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
-import remarkGfm from "remark-gfm";
 
 export async function GET(
   request: Request,
@@ -22,17 +19,11 @@ export async function GET(
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processedContent = await remark()
-    .use(html)
-    .use(remarkGfm)
-    .process(content);
-  const contentHtml = processedContent.toString();
-
   return NextResponse.json({
     slug,
     title: data.title,
     date: data.date,
     tags: data.tags || [],
-    content: contentHtml,
+    content: content, // Send the raw Markdown content
   });
 }
