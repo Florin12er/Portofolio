@@ -195,7 +195,7 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12">
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-5xl">
+      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-7xl">
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
           <header className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
             <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
@@ -283,7 +283,7 @@ export default function BlogPost() {
         </div>
       </article>
 
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-5xl mt-12">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-7xl mt-12">
         <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
           {t("comments")}
         </h2>
