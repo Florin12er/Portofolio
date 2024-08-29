@@ -10,6 +10,7 @@ import {
   SiGo,
   SiSpring,
   SiGnubash,
+  SiPrisma,
 } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
 
@@ -101,6 +102,12 @@ export const skills: Skill[] = [
   {
     name: "Bash",
     icon: SiGnubash,
+    color: "text-black",
+    animation: "hover:scale-125 hover:-translate-y-1",
+  },
+  {
+    name: "Prisma",
+    icon: SiPrisma,
     color: "text-black",
     animation: "hover:scale-125 hover:-translate-y-1",
   },

@@ -4,7 +4,8 @@
     "projects": "Projects",
     "blogs": "Blogs",
     "contact": "Contact",
-    "sebastianPortfolio": "Sebastian's Portfolio"
+    "sebastianPortfolio": "Sebastian's Portfolio",
+    "mobileNavDescription": "Mobile Navigation"
   },
   "LanguageSwitcher": {
     "language": "{language}"

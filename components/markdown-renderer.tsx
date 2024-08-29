@@ -1,6 +1,6 @@
 // components/markdown-renderer.tsx
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
