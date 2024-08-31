@@ -71,21 +71,26 @@ const TableOfContents = ({ toc }: { toc: TocItem[] }) => {
   const activeId = useActiveId(toc.map((item) => item.id));
 
   return (
-    <nav className="toc">
-      <h2 className="text-xl font-semibold mb-2">{t("tableOfContents")}</h2>
-      {toc.map((item: TocItem) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          className={`block p-1 pl-${(item.level - 1) * 4}  hover:underline hover:text-blue-600 ${
-            activeId === item.id
-              ? "font-bold border-l-2 border-solid border-blue-600"
-              : "border-none"
-          }`}
-        >
-          {item.title}
-        </a>
-      ))}
+    <nav className="toc sticky top-24 max-h-[calc(100vh-6rem)] overflow-auto">
+      <h2 className="text-lg font-bold mb-4 text-gray-800 dark:text-gray-200">
+        {t("tableOfContents")}
+      </h2>
+      <ul className="space-y-2">
+        {toc.map((item: TocItem) => (
+          <li key={item.id} className={`pl-${(item.level - 1) * 4}`}>
+            <a
+              href={`#${item.id}`}
+              className={`block py-1 text-sm transition-colors duration-200 ${
+                activeId === item.id
+                  ? "text-blue-600 dark:text-blue-400 font-semibold"
+                  : "text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+              }`}
+            >
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

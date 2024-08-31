@@ -30,6 +30,10 @@ interface WrapperProps extends ChildrenProps {
   title: string;
 }
 
+interface CalloutWrapperProps extends WrapperProps {
+  borderColor: string;
+}
+
 interface AlertWrapperProps extends WrapperProps {
   borderColor: string;
 }
@@ -62,22 +66,24 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
   );
 };
 
-const CalloutWrapper: React.FC<WrapperProps> = ({
+const CalloutWrapper: React.FC<CalloutWrapperProps> = ({
   children,
   bgColor,
   textColor,
   icon,
+  borderColor,
   title,
 }) => (
-  <div className={`${bgColor} ${textColor} my-2 rounded-lg flex items-start`}>
-    <div className="mr-6 mt-6 ml-4">{icon}</div>
+  <Alert
+    className={`flex items-start ${bgColor} ${textColor} ${borderColor} my-4 p-4 rounded-lg`}
+  >
+    <div className="mr-3 mt-1">{icon}</div>
     <div>
-      <p className="font-bold text-lg mb-2">{title}</p>
-      <div className="pb-4">{children}</div>
+      <h5 className="font-medium text-lg mb-2">{title}</h5>
+      <div className="text-sm">{children}</div>
     </div>
-  </div>
+  </Alert>
 );
-
 const AlertWrapper: React.FC<AlertWrapperProps> = ({
   children,
   bgColor,
@@ -97,12 +103,14 @@ const AlertWrapper: React.FC<AlertWrapperProps> = ({
   </Alert>
 );
 
-// Callouts
 export const WarningCallout: React.FC<ChildrenProps> = ({ children }) => (
   <CalloutWrapper
-    bgColor="bg-orange-100 dark:bg-orange-900"
-    textColor="text-orange-700 dark:text-orange-100"
-    icon={<AlertTriangle className="w-5 h-5" />}
+    bgColor="bg-orange-50 dark:bg-orange-900/50"
+    borderColor="border border-orange-200 dark:border-orange-800"
+    textColor="text-orange-800 dark:text-orange-100"
+    icon={
+      <AlertTriangle className="w-5 h-5 text-orange-500 dark:text-orange-300" />
+    }
     title="Warning"
   >
     {children}
@@ -111,9 +119,12 @@ export const WarningCallout: React.FC<ChildrenProps> = ({ children }) => (
 
 export const SuccessCallout: React.FC<ChildrenProps> = ({ children }) => (
   <CalloutWrapper
-    bgColor="bg-green-100 dark:bg-green-900"
-    textColor="text-green-700 dark:text-green-100"
-    icon={<CheckCircle className="w-5 h-5" />}
+    bgColor="bg-green-50 dark:bg-green-900/50"
+    borderColor="border border-green-200 dark:border-green-800"
+    textColor="text-green-800 dark:text-green-100"
+    icon={
+      <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-300" />
+    }
     title="Success"
   >
     {children}
@@ -122,9 +133,10 @@ export const SuccessCallout: React.FC<ChildrenProps> = ({ children }) => (
 
 export const InfoCallout: React.FC<ChildrenProps> = ({ children }) => (
   <CalloutWrapper
-    bgColor="bg-blue-100 dark:bg-blue-900"
+    bgColor="bg-blue-50 dark:bg-blue-900/50"
+    borderColor="border border-blue-200 dark:border-blue-800"
     textColor="text-blue-700 dark:text-blue-100"
-    icon={<Info className="w-5 h-5" />}
+    icon={<Info className="w-5 h-5 text-blue-500 dark:text-blue-300" />}
     title="Info"
   >
     {children}
@@ -133,16 +145,16 @@ export const InfoCallout: React.FC<ChildrenProps> = ({ children }) => (
 
 export const ErrorCallout: React.FC<ChildrenProps> = ({ children }) => (
   <CalloutWrapper
-    bgColor="bg-red-100 dark:bg-red-900"
-    textColor="text-red-700 dark:text-red-100"
-    icon={<AlertCircle className="w-5 h-5" />}
+    bgColor="bg-red-50 dark:bg-red-900/50"
+    borderColor="border border-red-200 dark:border-red-800"
+    textColor="text-red-800 dark:text-red-100"
+    icon={<AlertCircle className="w-5 h-5 text-red-500 dark:text-red-300" />}
     title="Error"
   >
     {children}
   </CalloutWrapper>
 );
-
-// Alerts
+/// Alerts
 export const TipAlert: React.FC<ChildrenProps> = ({ children }) => (
   <AlertWrapper
     bgColor="bg-blue-50 dark:bg-blue-900/50"
