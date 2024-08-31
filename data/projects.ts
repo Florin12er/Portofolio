@@ -212,4 +212,25 @@ export const projectsData: Project[] = [
     technologies: ["JavaScript", "NodeJS", "Express", "EJS", "MongoDB"],
     tags: ["Javascript", "NodeJS", "Express", "EJS", "MongoDB"],
   },
+  {
+    id: "9",
+    name: {
+      en: "Simple Calculator",
+      de: "Einfache Rechner",
+    },
+    description: {
+      en: "This is a very simple calculator built with HTML, CSS and JavaScript.",
+      de: "Dies ist eine sehr einfache Rechner gebaut mit HTML, CSS und JavaScript.",
+    },
+    longDescription: {
+      en: "This project is a sleek, web-based calculator application that performs basic arithmetic operations. Built with HTML, CSS, and JavaScript, it features a clean, user-friendly interface with responsive design. The calculator handles standard calculations, includes error handling for division by zero, and offers a clear function for ease of use. It demonstrates fundamental web development skills and attention to user experience.",
+      de: "Dieses Projekt ist eine elegante, webbasierte Rechneranwendung, die grundlegende arithmetische Operationen durchführt. Es wurde mit HTML, CSS und JavaScript erstellt und verfügt über eine saubere, benutzerfreundliche Oberfläche mit responsivem Design. Der Rechner führt Standardberechnungen durch, enthält eine Fehlerbehandlung für die Division durch Null und bietet eine übersichtliche Funktion für eine einfache Bedienung. Er demonstriert grundlegende Webentwicklungsfähigkeiten und Aufmerksamkeit für die Benutzererfahrung.",
+    },
+    imageUrl: "/images/calculator.png",
+    livePreviewUrl: "https://sebastian-calculator.netlify.app",
+    liveUrl: "https://sebastian-calculator.netlify.app",
+    githubUrl: "https://github.com/Florin12er/calculator2",
+    technologies: ["JavaScript", "HTML", "CSS"],
+    tags: ["Javascript", "HTML", "CSS"],
+  },
 ];
