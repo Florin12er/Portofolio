@@ -88,9 +88,13 @@
     "comments": "Comments",
     "likes": "Likes",
     "tableOfContents": "Table of Contents",
+    "responseAdded": "Response Added",
+    "responseAddedDescription": "Thank you for your response. It will be posted on the blog shortly.",
     "name": "Your Name",
     "commentPlaceholder": "Your Comment",
+    "responsePlaceholder": "Response",
     "submitting": "submitting...",
+    "submitResponse": "Respond",
     "submitComment": "Submit Comment",
     "backToAllBlogs": "Back to All Blogs",
     "share": "Share"

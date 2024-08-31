@@ -9,16 +9,25 @@ datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }
-
 model Comment {
+    id        String     @id @default(cuid())
+    name      String
+    content   String
+    createdAt DateTime   @default(now())
+    postSlug  String
+    ipAddress String
+    responses Response[]
+}
+
+model Response {
     id        String   @id @default(cuid())
     name      String
     content   String
     createdAt DateTime @default(now())
-    postSlug  String
     ipAddress String
+    comment   Comment  @relation(fields: [commentId], references: [id])
+    commentId String
 }
-
 model Like {
     id        String   @id @default(cuid())
     postSlug  String

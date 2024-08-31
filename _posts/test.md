@@ -49,6 +49,7 @@ Static files are easy to cache and distribute, making scaling a breeze.
 - Headless CMS: Contentful, Strapi, Sanity
 - Deployment Platforms: Netlify, Vercel, GitHub Pages
 
+
 ## Conclusion
 
 Jamstack is more than just a trend; it's a fundamental shift in how we approach web development. By leveraging the power
@@ -56,3 +57,15 @@ of modern browsers, CDNs, and APIs, Jamstack offers a compelling solution for bu
 and developer-friendly.
 As we move forward, expect to see more innovations and tools emerging in the Jamstack ecosystem, further solidifying its
 place in the future of web development.
+
+<div class="accordion" data-title="Click to expand">
+
+This content will be inside the accordion. You can include any Markdown content here.
+
+- List item 1
+- List item 2
+
+```code
+console.log("Even code blocks work!");
+```
+</div>

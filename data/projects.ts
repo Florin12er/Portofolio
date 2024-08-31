@@ -24,7 +24,7 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
-    id: "2",
+    id: "1",
     name: {
       en: "Todo App",
       de: "Todo App",
@@ -38,7 +38,7 @@ export const projectsData: Project[] = [
       de: "Die Website ist eine moderne Aufgabenverwaltungsanwendung, die mit Next.js erstellt wurde und eine saubere und intuitive Benutzeroberfläche aufweist. Sie ermöglicht es den Nutzern, Aufgaben effizient zu erstellen, zu verwalten und zu organisieren. Dabei werden Funktionen wie Echtzeit-Updates und nahtlose Navigation genutzt, was die Produktivität einfacher und angenehmer macht.",
     },
     imageUrl: "/images/todo.png",
-    livePreviewUrl: "https://todonextjs-pi.vercel.app",
+    livePreviewUrl: "",
     liveUrl: "https://todonextjs-pi.vercel.app",
     githubUrl: "https://github.com/Florin12er/todonextjs",
     technologies: [
@@ -47,7 +47,7 @@ export const projectsData: Project[] = [
       "TypeScript",
       "Tailwind CSS",
       "Prisma",
-      "SQL",
+      "PostgreSQL",
     ],
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
   },
@@ -69,14 +69,7 @@ export const projectsData: Project[] = [
     livePreviewUrl: "https://sort-algorithms-visualizer-nt5w.vercel.app",
     liveUrl: "https://sort-algorithms-visualizer-nt5w.vercel.app",
     githubUrl: "https://github.com/Florin12er/sort-algorithms-visualizer",
-    technologies: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Prisma",
-      "SQL",
-    ],
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },
 ];

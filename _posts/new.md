@@ -107,7 +107,7 @@ This is a helpful tip for your readers!
 
 Here's a footnote.
 
-# Conclusion
+# Conclusion :smile:
 
 This is the end of the post.
 
@@ -127,4 +127,31 @@ This Markdown file showcases:
 11. Task lists
 
 You can use this as a sample post in your blog to demonstrate all the features available to your readers. It also serves as a quick reference for you when creating new posts, reminding you of all the available formatting options and custom components.
-    
+
+# math equations
+$$
+\frac{n!}{k!(n-k)!} = \binom{n}{k}
+$$
+
+
+Apple
+: A round fruit with red or green skin and a white interior.
+
+Orange
+: A citrus fruit with a tough bright reddish-yellow rind.
+
+
+<div class="tabs" data-tabs="Tab 1, Tab 2, Tab 3">
+<div>
+Content for Tab 1 goes here.
+
+You can include any Markdown content, like lists:
+- Item 1
+- Item 2
+</div>
+<div>
+Content for Tab 2.
+</div>
+<div>
+Content for Tab 3.
+</div>

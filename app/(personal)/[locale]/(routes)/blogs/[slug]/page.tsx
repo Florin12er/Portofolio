@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
+import { useActiveId } from "@/components/useActiveId";
 import MarkdownRenderer from "@/components/markdown-renderer";
 import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -40,6 +41,8 @@ interface Comment {
   name: string;
   content: string;
   createdAt: string;
+  likes: number;
+  responses: Comment[];
 }
 
 interface TocItem {
@@ -63,6 +66,29 @@ function extractToc(content: string): TocItem[] {
 
   return toc;
 }
+const TableOfContents = ({ toc }: { toc: TocItem[] }) => {
+  const t = useTranslations("Blog");
+  const activeId = useActiveId(toc.map((item) => item.id));
+
+  return (
+    <nav className="toc">
+      <h2 className="text-xl font-semibold mb-2">{t("tableOfContents")}</h2>
+      {toc.map((item: TocItem) => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className={`block p-1 pl-${(item.level - 1) * 4}  hover:underline hover:text-blue-600 ${
+            activeId === item.id
+              ? "font-bold border-l-2 border-solid border-blue-600"
+              : "border-none"
+          }`}
+        >
+          {item.title}
+        </a>
+      ))}
+    </nav>
+  );
+};
 
 export default function BlogPost() {
   const t = useTranslations("Blog");
@@ -89,7 +115,37 @@ export default function BlogPost() {
       setComments(data);
     }
   }, [slug]);
+  async function handleSubmitResponse(
+    commentId: string,
+    responseData: { name: string; content: string },
+  ) {
+    setIsSubmitting(true);
+    setError("");
 
+    try {
+      const res = await fetch("/api/responses", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...responseData, commentId }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to submit response");
+      }
+
+      fetchComments();
+      setModalContent({
+        title: t("responseAdded"),
+        description: t("responseAddedDescription"),
+      });
+      setModalOpen(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
   useEffect(() => {
     async function fetchData() {
       try {
@@ -195,146 +251,193 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12">
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-7xl">
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-          <header className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-              {post.title}
-            </h1>
-            <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 mb-4">
-              <span className="flex items-center mr-4 mb-2 sm:mb-0">
-                <CalendarIcon className="w-4 h-4 mr-1" />
-                {post.date}
-              </span>
-              <span className="flex items-center mr-4 mb-2 sm:mb-0">
-                <Clock className="w-4 h-4 mr-1" />
-                {Math.ceil(post.content.split(" ").length / 200)}{" "}
-                {t("minutesRead")}
-              </span>
-              <span className="flex items-center mr-4 mb-2 sm:mb-0">
-                <MessageCircle className="w-4 h-4 mr-1" />
-                {comments.length} {t("comments")}
-              </span>
-              <span className="flex items-center mb-2 sm:mb-0">
-                <ThumbsUp className="w-4 h-4 mr-1" />
-                {likes} {t("likes")}
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {post.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-            <div className="flex space-x-4">
-              <Button
-                onClick={handleLike}
-                variant="transparent"
-                className={`flex items-center ${hasLiked ? "bg-green-500 hover:bg-green-600" : ""}`}
-                disabled={hasLiked}
-              >
-                <ThumbsUp className="w-4 h-4 mr-2" />
-                {hasLiked ? "Liked" : "Like"} ({likes})
-              </Button>
-              <Button
-                variant="transparent"
-                onClick={handleShare}
-                className="flex items-center"
-              >
-                <Share2 className="w-4 h-4 mr-2" />
-                {t("share")}
-              </Button>
-            </div>
-          </header>
-          <div className="p-6 sm:p-8">
-            <Button
-              variant="link"
-              onClick={() => setShowToc(!showToc)}
-              className="mb-4"
-            >
-              <BookOpen className="w-4 h-4 mr-2" />
-              {t("tableOfContents")}
-            </Button>
-            {showToc && (
-              <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                <h2 className="text-xl font-semibold mb-2">
-                  {t("tableOfContents")}
-                </h2>
-                <nav>
-                  {toc.map((item) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className={`block py-1 pl-${(item.level - 1) * 4} hover:underline`}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="lg:flex lg:space-x-8">
+          <article className="lg:w-3/4">
+            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+              <header className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
+                <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+                  {post.title}
+                </h1>
+                <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  <span className="flex items-center mr-4 mb-2 sm:mb-0">
+                    <CalendarIcon className="w-4 h-4 mr-1" />
+                    {post.date}
+                  </span>
+                  <span className="flex items-center mr-4 mb-2 sm:mb-0">
+                    <Clock className="w-4 h-4 mr-1" />
+                    {Math.ceil(post.content.split(" ").length / 200)}{" "}
+                    {t("minutesRead")}
+                  </span>
+                  <span className="flex items-center mr-4 mb-2 sm:mb-0">
+                    <MessageCircle className="w-4 h-4 mr-1" />
+                    {comments.length} {t("comments")}
+                  </span>
+                  <span className="flex items-center mb-2 sm:mb-0">
+                    <ThumbsUp className="w-4 h-4 mr-1" />
+                    {likes} {t("likes")}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {post.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                     >
-                      {item.title}
-                    </a>
+                      {tag}
+                    </Badge>
                   ))}
-                </nav>
+                </div>
+                <div className="flex space-x-4">
+                  <Button
+                    onClick={handleLike}
+                    variant="transparent"
+                    className={`flex items-center ${hasLiked ? "bg-green-500 hover:bg-green-600" : ""}`}
+                    disabled={hasLiked}
+                  >
+                    <ThumbsUp className="w-4 h-4 mr-2" />
+                    {hasLiked ? "Liked" : "Like"} ({likes})
+                  </Button>
+                  <Button
+                    variant="transparent"
+                    onClick={handleShare}
+                    className="flex items-center"
+                  >
+                    <Share2 className="w-4 h-4 mr-2" />
+                    {t("share")}
+                  </Button>
+                </div>
+              </header>
+              <div className="p-6 sm:p-8">
+                <div className="lg:hidden mb-4">
+                  <Button
+                    variant="link"
+                    onClick={() => setShowToc(!showToc)}
+                    className="mb-4"
+                  >
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    {t("tableOfContents")}
+                  </Button>
+                  {showToc && (
+                    <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                      <TableOfContents toc={toc} />
+                    </div>
+                  )}
+                </div>
+                <MarkdownRenderer content={post.content} />
               </div>
-            )}
-            <MarkdownRenderer content={post.content} />
-          </div>
-        </div>
-      </article>
-
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-7xl mt-12">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-          {t("comments")}
-        </h2>
-        <form
-          onSubmit={handleSubmitComment}
-          className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
-        >
-          <Input
-            type="text"
-            placeholder={t("name")}
-            value={newComment.name}
-            onChange={(e) =>
-              setNewComment({ ...newComment, name: e.target.value })
-            }
-            className="mb-4 bg-gray-100 dark:bg-gray-700"
-            required
-          />
-          <Textarea
-            placeholder={t("commentPlaceholder")}
-            value={newComment.content}
-            onChange={(e) =>
-              setNewComment({ ...newComment, content: e.target.value })
-            }
-            className="mb-4 bg-gray-100 dark:bg-gray-700"
-            required
-          />
-          <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? t("submitting") : t("submitComment")}
-          </Button>
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-        </form>
-
-        <div className="space-y-6">
-          {comments.map((comment) => (
-            <div
-              key={comment.id}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
-            >
-              <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2">
-                {comment.name}
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-2">
-                {comment.content}
-              </p>
-              <time className="text-sm text-gray-500 dark:text-gray-400">
-                {new Date(comment.createdAt).toLocaleString()}
-              </time>
             </div>
-          ))}
+
+            <section className="mt-12">
+              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+                {t("comments")}
+              </h2>
+              <form
+                onSubmit={handleSubmitComment}
+                className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+              >
+                <Input
+                  type="text"
+                  placeholder={t("name")}
+                  value={newComment.name}
+                  onChange={(e) =>
+                    setNewComment({ ...newComment, name: e.target.value })
+                  }
+                  className="mb-4 bg-gray-100 dark:bg-gray-700"
+                  required
+                />
+                <Textarea
+                  placeholder={t("commentPlaceholder")}
+                  value={newComment.content}
+                  onChange={(e) =>
+                    setNewComment({ ...newComment, content: e.target.value })
+                  }
+                  className="mb-4 bg-gray-100 dark:bg-gray-700"
+                  required
+                />
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? t("submitting") : t("submitComment")}
+                </Button>
+                {error && <p className="text-red-500 mt-2">{error}</p>}
+              </form>
+
+              <div className="space-y-6">
+                {comments.map((comment) => (
+                  <div
+                    key={comment.id}
+                    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-4"
+                  >
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-2">
+                      {comment.name}
+                    </h3>
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      {comment.content}
+                    </p>
+                    <time className="text-sm text-gray-500 dark:text-gray-400">
+                      {new Date(comment.createdAt).toLocaleString()}
+                    </time>
+
+                    {comment.responses.map((response) => (
+                      <div
+                        key={response.id}
+                        className="ml-8 mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded"
+                      >
+                        <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                          {response.name}
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300 mb-1">
+                          {response.content}
+                        </p>
+                        <time className="text-xs text-gray-500 dark:text-gray-400">
+                          {new Date(response.createdAt).toLocaleString()}
+                        </time>
+                      </div>
+                    ))}
+
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.currentTarget);
+                        handleSubmitResponse(comment.id, {
+                          name: formData.get("name") as string,
+                          content: formData.get("content") as string,
+                        });
+                      }}
+                      className="mt-4"
+                    >
+                      <Input
+                        type="text"
+                        name="name"
+                        placeholder={t("name")}
+                        className="mb-2"
+                        required
+                      />
+                      <Textarea
+                        name="content"
+                        placeholder={t("responsePlaceholder")}
+                        className="mb-2"
+                        required
+                      />
+                      <Button type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? t("submitting") : t("submitResponse")}
+                      </Button>
+                    </form>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </article>
+
+          <aside className="hidden lg:block lg:w-1/4">
+            <div className="sticky top-8 overflow-y-auto max-h-[calc(100vh-4rem)]">
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                <TableOfContents toc={toc} />
+              </div>
+            </div>
+          </aside>
         </div>
-      </section>
+      </div>
 
       <footer className="mt-12 text-center text-gray-600 dark:text-gray-400">
         <Link href="/blogs" className="hover:underline">

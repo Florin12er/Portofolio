@@ -4,7 +4,7 @@
     "projects": "Projekte",
     "blogs": "Blogs",
     "contact": "Kontakt",
-        "mobileNavDescription": "Mobile Navigation",
+    "mobileNavDescription": "Mobile Navigation",
     "sebastianPortfolio": "Sebastians Portfolio"
   },
   "LanguageSwitcher": {
@@ -91,7 +91,11 @@
     "tableOfContents": "Inhaltsverzeichnis",
     "name": "Deine Name",
     "commentPlaceholder": "Deine Bewertung",
+    "responsePlaceholder": "Antwort",
+    "responseAdded": "Antwort hinzugefügt",
+    "responseAddedDescription": "Danke für Ihre Antwort.",
     "submitting": "einreichen...",
+    "submitResponse": "Antworten",
     "submitComment": "Kommentar einreichen",
     "backToAllBlogs": "Zurück zur Blogliste",
     "share": "Teilen"

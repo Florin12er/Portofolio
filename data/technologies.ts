@@ -1,14 +1,14 @@
 // data/technologies.ts
 import { IconType } from "react-icons";
-import { FaReact, FaNodeJs, FaGitAlt, FaJava, FaLinux } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaGitAlt, FaLinux } from "react-icons/fa";
 import {
   SiNextdotjs,
   SiTypescript,
+  SiPostgresql,
   SiExpress,
   SiMongodb,
   SiTailwindcss,
   SiGo,
-  SiSpring,
   SiGnubash,
   SiPrisma,
 } from "react-icons/si";
@@ -26,6 +26,12 @@ export const skills: Skill[] = [
     icon: FaReact,
     color: "text-blue-500",
     animation: "hover:rotate-180 hover:scale-110",
+  },
+  {
+    name: "PostgreSQL",
+    icon: SiPostgresql,
+    color: "text-blue-600",
+    animation: "hover:rotate-12 hover:scale-110",
   },
   {
     name: "Next.js",
@@ -58,7 +64,7 @@ export const skills: Skill[] = [
     animation: "hover:rotate-12 hover:scale-110",
   },
   {
-    name: "SQL",
+    name: "MySQL",
     icon: DiMysql,
     color: "text-blue-700",
     animation: "hover:translate-y-[-5px] hover:scale-110",
@@ -80,18 +86,6 @@ export const skills: Skill[] = [
     icon: SiGo,
     color: "text-blue-400",
     animation: "hover:go-fast",
-  },
-  {
-    name: "Java",
-    icon: FaJava,
-    color: "text-red-500",
-    animation: "hover:shake hover:scale-110",
-  },
-  {
-    name: "Spring",
-    icon: SiSpring,
-    color: "text-green-500",
-    animation: "hover:bounce hover:scale-110",
   },
   {
     name: "Linux",
