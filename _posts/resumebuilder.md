@@ -1,3 +1,9 @@
+---
+title: "Resume Builder: Current Features and Future Enhancements"
+date: 2023-05-01
+categories: ["Resume Builder", "Features", "Enhancements"]
+tags: ["Resume Builder", "Features", "Enhancements"]
+---
 # Resume Builder: Current Features and Future Enhancements
 
 ## Current Features
