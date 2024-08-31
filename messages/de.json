@@ -11,14 +11,14 @@
     "language": "{language}"
   },
   "Home": {
-    "welcome": "Willkommen in meinem Portfolio",
+    "welcome": "Willkommen zum meinem Portfolio",
     "subtitle": "Full-Stack Entwickler | Autodidakt | Tech-Enthusiast",
     "getInTouch": "Kontakt aufnehmen",
     "aboutMe": "Über mich",
     "profileAlt": "Profilbild",
     "aboutDescription": "Ich bin ein autodidaktischer Fullstack-Entwickler mit Leidenschaft für die Erstellung innovativer Weblösungen. Meine Expertise umfasst:",
     "skillsFrontend": "Frontend: JavaScript, React, CSS, HTML und Tailwind",
-    "skillsBackend": "Backend: Node.js, Go und Java Spring",
+    "skillsBackend": "Backend: Node.js, Go und Python Django",
     "skillsDatabases": "Datenbanken: MongoDB, PostgreSQL und MySQL",
     "skillsDevOps": "DevOps: Linux, Bash und Zsh-Scripting",
     "collaborationInvitation": "Ich freue mich darauf, an Projekten mitzuarbeiten oder Vollzeitmöglichkeiten zu erkunden. Lassen Sie uns gemeinsam etwas Großartiges schaffen!",
