@@ -103,3 +103,6 @@
   font-weight: bold;
   transform: translateX(4px);
 }
+.country-selector {
+  display: none !important;
+}
