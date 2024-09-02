@@ -61,11 +61,11 @@ export default function Home() {
             className="md:w-1/3"
           >
             <Image
-              src="/images/profile.jpg"
+              src="/images/Florin.png"
               alt={t("profileAlt")}
-              width={300}
-              height={300}
-              className="rounded-full shadow-lg hover:shadow-xl transition duration-300"
+              width={320}
+              height={400}
+              className="shadow-lg rounded-xl hover:shadow-xl transition duration-300"
             />
           </motion.div>
           <motion.div
