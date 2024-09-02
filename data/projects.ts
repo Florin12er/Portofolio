@@ -55,7 +55,7 @@ export const projectsData: Project[] = [
     id: "2",
     name: {
       en: "Sort algorithm visualizer",
-      de: "Visualisierung des Sortieralgorithmuss",
+      de: "Visualisierung des Sortieralgorithmus",
     },
     description: {
       en: "Sort algorithm visualizer",
