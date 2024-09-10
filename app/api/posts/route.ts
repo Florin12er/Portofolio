@@ -24,6 +24,8 @@ export async function GET() {
         .process(content);
       const contentHtml = processedContent.toString();
 
+      const imageUrl = data.image || "/images/Jotion.png";
+
       return {
         slug,
         title: data.title,
@@ -31,6 +33,7 @@ export async function GET() {
         tags: data.tags || [],
         content: contentHtml,
         rawContent: content,
+        imageUrl: imageUrl,
       };
     }),
   );

@@ -1,8 +1,9 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "katex/dist/katex.min.css";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import ClientThemeProvider from "@/components/ClientThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,17 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem={false}
-          themes={["light", "dark"]}
-          storageKey="portofolio-theme"
-        >
-          {children}
-        </ThemeProvider>
+        <ClientThemeProvider>{children}</ClientThemeProvider>
       </body>
     </html>
   );

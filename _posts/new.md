@@ -2,11 +2,14 @@
 title: "Showcasing the Features of My Next.js Portfolio Blog"
 date: "2024-08-28"
 tags: ["Next.js", "React", "Tailwind CSS", "Markdown", "Web Development"]
+image: "/images/Jotion.png"
 ---
+
 
 # Showcasing the Features of My Next.js Portfolio Blog
 
 Welcome to this comprehensive tour of my portfolio blog built with Next.js, React, and Tailwind CSS. This post will demonstrate various Markdown features and custom components that make this blog stand out.
+
 
 ## Table of Contents
 
@@ -74,7 +77,7 @@ print(factorial(5))  # Output: 120
 
 ## Images
 
-![Next.js Logo](https://media.istockphoto.com/id/1370772148/photo/track-and-mountains-in-valle-del-lago-somiedo-nature-park-asturias-spain.jpg?s=612x612&w=0&k=20&c=QJn62amhOddkJSbihcjWKHXShMAfcKM0hPN65aCloco=)
+![Showcasing the Features of My Next.js Portfolio Blog](/images/library.png)
 
 ## Blockquotes
 

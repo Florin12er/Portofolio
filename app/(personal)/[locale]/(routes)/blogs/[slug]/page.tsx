@@ -31,6 +31,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/modal";
+import EnlargeableImage from "@/components/ZoomebleImage";
 
 interface BlogPost {
   slug: string;
@@ -38,6 +39,7 @@ interface BlogPost {
   date: string;
   tags: string[];
   content: string;
+  imageUrl?: string;
 }
 
 interface Comment {
@@ -266,6 +268,18 @@ export default function BlogPost() {
                     <Share2 className="w-4 h-4 mr-2" />
                     {t("share")}
                   </Button>
+                </div>
+                <div className="mt-8">
+                  {post.imageUrl && (
+                    <div className="mb-8 w-full h-64 md:h-96">
+                      <EnlargeableImage
+                        src={post.imageUrl as string}
+                        alt={post.title}
+                        width={750}
+                        height={750}
+                      />
+                    </div>
+                  )}
                 </div>
               </header>
               <div className="p-6 sm:p-8">

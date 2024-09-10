@@ -1,9 +1,9 @@
-// app/[locale]/projects/page.tsx
 "use client";
 
 import React, { useState, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -73,7 +73,9 @@ export default function Projects() {
     setSelectedTag(tag === selectedTag ? null : tag);
     setSearchTerm("");
     router.push(
-      `/${locale}/projects${tag === selectedTag ? "" : `?search=${encodeURIComponent(tag)}`}`,
+      `/${locale}/projects${
+        tag === selectedTag ? "" : `?search=${encodeURIComponent(tag)}`
+      }`,
       {
         scroll: false,
       },
@@ -95,7 +97,6 @@ export default function Projects() {
         <SearchParamsHandler setSearchTerm={setSearchTerm} />
       </Suspense>
 
-      {/* Search Input */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -112,7 +113,6 @@ export default function Projects() {
         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
       </motion.div>
 
-      {/* Projects Grid */}
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
@@ -130,6 +130,21 @@ export default function Projects() {
             >
               <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
+                  <div className="relative w-full h-48 mb-4">
+                    <Link href={`/${locale}/projects/${project.id}`}>
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.name[locale]}
+                        className="rounded-t-lg"
+                        quality={100}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                        style={{
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Link>
+                  </div>
                   <CardTitle className="text-xl font-bold">
                     {project.name[locale]}
                   </CardTitle>

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Switch } from "@/components/ui/switch";
@@ -82,11 +82,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <Image
             src={project.imageUrl}
             alt={t("projectScreenshot", { projectName: project.name[locale] })}
-            layout="fill"
-            objectFit="contain"
             quality={100}
             priority
-          />
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "contain"
+            }} />
         ) : project.livePreviewUrl ? (
           <iframe
             src={project.livePreviewUrl}

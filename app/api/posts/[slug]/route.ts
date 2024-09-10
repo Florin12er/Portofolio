@@ -19,11 +19,14 @@ export async function GET(
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
+  const imageUrl = data.image || "/images/Jotion";
+
   return NextResponse.json({
     slug,
     title: data.title,
     date: data.date,
     tags: data.tags || [],
-    content: content, // Send the raw Markdown content
+    content: content,
+    imageUrl: imageUrl,
   });
 }

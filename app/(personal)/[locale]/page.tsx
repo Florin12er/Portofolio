@@ -1,7 +1,7 @@
 // app/[locale]/page.tsx
 "use client";
 
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
@@ -66,7 +66,10 @@ export default function Home() {
               width={320}
               height={400}
               className="shadow-lg rounded-xl hover:shadow-xl transition duration-300"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
