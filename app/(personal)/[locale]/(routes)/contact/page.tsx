@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 import {
   FaTwitter,
   FaGithub,
@@ -9,8 +10,8 @@ import {
   FaCheck,
   FaTimes,
   FaPaperPlane,
+  FaFilePdf,
 } from "react-icons/fa";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
@@ -219,6 +220,19 @@ const Contact = () => {
                   className="text-blue-600 hover:underline"
                 >
                   github.com/Florin12er
+                </a>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center space-x-4 p-3 rounded-lg bg-gray-100 dark:bg-gray-800"
+              >
+                <FaFilePdf className="text-gray-800 dark:text-gray-200 text-xl" />
+                <a
+                  href="/LEBENSLAUF.pdf"
+                  download="Resume.pdf"
+                  className="text-blue-600 hover:underline"
+                >
+                  {t("downloadResume")}
                 </a>
               </motion.div>
             </CardContent>

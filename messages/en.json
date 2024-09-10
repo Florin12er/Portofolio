@@ -46,7 +46,8 @@
     "messageSentError": "Failed to send message. Please try again.",
     "generalError": "An error occurred. Please try again later.",
     "connectWithMe": "Connect with Me",
-    "socialDescription": "Feel free to reach out through social media or email."
+    "socialDescription": "Feel free to reach out through social media or email.",
+    "downloadResume": "My Resume"
   },
   "Blogs": {
     "pageTitle": "My Blog Posts",

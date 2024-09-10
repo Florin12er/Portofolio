@@ -47,7 +47,8 @@
     "messageSentError": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
     "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.",
     "connectWithMe": "Verbinden Sie sich mit mir",
-    "socialDescription": "Sie können mich gerne über soziale Medien oder E-Mail kontaktieren."
+    "socialDescription": "Sie können mich gerne über soziale Medien oder E-Mail kontaktieren.",
+    "downloadResume": "Mein Lebenslauf"
   },
   "Blogs": {
     "pageTitle": "Meine Blogbeiträge",
