@@ -6,6 +6,7 @@ interface EnlargeableImageProps {
   alt: string;
   width: number;
   height: number;
+  isZoomed?: boolean;
 }
 
 const EnlargeableImage: React.FC<EnlargeableImageProps> = ({
@@ -13,6 +14,7 @@ const EnlargeableImage: React.FC<EnlargeableImageProps> = ({
   alt,
   width,
   height,
+  isZoomed = true,
 }) => {
   const [isEnlarged, setIsEnlarged] = useState(false);
 
@@ -29,7 +31,9 @@ const EnlargeableImage: React.FC<EnlargeableImageProps> = ({
           width={width}
           height={height}
           onClick={toggleEnlarge}
-          className="cursor-zoom-in transition-transform hover:scale-105"
+          className={`cursor-zoom-in ${
+            isZoomed ? "transition-transform hover:scale-105" : ""
+          }`}
         />
       </div>
       {isEnlarged && (

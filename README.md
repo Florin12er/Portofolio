@@ -38,9 +38,9 @@ A modern, sleek portfolio website built with Next.js, showcasing my skills, proj
 1. Clone the repository
 2. Install dependencies: `npm install`
 3. Set up environment variables for Prisma and email functionality
-  - `DATABASE_URL=<your_database_url>`
-  - `EMAIL_USER=<your_email_address>`
-  - `EMAIL_PASS=<your_email_password>`
+  - `DATABASE_URL=<your_database_url>`  for your postgresSQL database (tip you can use any databse as long you modify the /prisma/schema.prisma file look here [Prisma Docs](https://www.prisma.io/docs)!)
+  - `EMAIL_USER=<your_email_address>` put your Google email address
+  - `EMAIL_PASS=<your_email_password>` put your Google password
 4. Run the development server: `npm run dev`
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
@@ -52,23 +52,25 @@ here is and example deployment link: [portofolio-sebastian1.vercel.app](https://
 
 ## Project Structure
 
-- `app/`: Contains the main application pages and components
-- `components/`: Reusable UI components
-- `lib/`: Utility functions and configurations
-- `prisma/`: Database schema and migrations
-- `public/`: Static assets
+- `/app`: Contains the main application pages and components
+- `/components`: Reusable UI components
+- `/lib`: Utility functions and configurations
+- `/prisma`: Database schema and migrations
+- `/public`: Static assets
+- `/data` : Data of the projects and technologies used
+- `/_posts`: Blog posts
 
 ## Adding Projects
 
 To add a new project to the showcase:
 1. Update the project data in the designated file (e.g., `/data/projects.ts`)
-2. Include project name, description, technologies used, and relevant links
+2. Include project id, name, description, technologies used, and relevant links
 
 ## Writing Blog Posts
 
 Blog posts are written in Markdown format:
-1. Create a new `.md` file in the designated blog posts directory
-2. Include front matter for metadata (title, date, tags)
-3. Write your blog content using Markdown syntax
+1. Create a new `.md` file in the designated blog posts : **_posts** directory
+2. Include front matter for metadata (title, date, tags, image) you can see an example in: **_posts/example.md**
+3. Write your blog content using Markdown syntax if you don't markdown take a look here : [Markdown Docs](https://www.markdownguide.org/cheat-sheet/) or the example provided
 
 Feel free to reach out through the contact form for any questions or collaborations!

@@ -68,8 +68,9 @@ export default function Home() {
               className="shadow-lg rounded-xl hover:shadow-xl transition duration-300"
               style={{
                 maxWidth: "100%",
-                height: "auto"
-              }} />
+                height: "auto",
+              }}
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}

@@ -3,8 +3,7 @@ import { IconType } from "react-icons";
 import { FaReact, FaNodeJs, FaGitAlt, FaLinux } from "react-icons/fa";
 import {
   SiNextdotjs,
-  SiPython,
-  SiDjango,
+  SiNuxtdotjs,
   SiJavascript,
   SiTypescript,
   SiHtml5,
@@ -58,22 +57,16 @@ export const skills: Skill[] = [
     animation: "hover:rotate-12 hover:scale-110",
   },
   {
-    name: "Python",
-    icon: SiPython,
-    color: "text-yellow-500",
-    animation: "hover:rotate-12 hover:scale-110",
-  },
-  {
-    name: "Django",
-    icon: SiDjango,
-    color: "text-green-500",
-    animation: "hover:scale-110",
-  },
-  {
     name: "Next.js",
     icon: SiNextdotjs,
     color: "text-black dark:text-white",
     animation: "hover:scale-125 hover:rotate-12",
+  },
+  {
+    name: "NuxtJs",
+    icon: SiNuxtdotjs,
+    color: "text-green-600",
+    animation: "hover:bounce hover:scale-110",
   },
   {
     name: "TypeScript",

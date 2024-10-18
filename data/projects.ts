@@ -73,27 +73,6 @@ export const projectsData: Project[] = [
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    id: "3",
-    name: {
-      en: "Notes App",
-      de: "Notizen-Anwendung",
-    },
-    description: {
-      en: "Notes app build with React and Go",
-      de: "Notizen-Anwendung gebaut mit React und Go",
-    },
-    longDescription: {
-      en: "This sophisticated notes application combines a sleek React and Tailwind CSS frontend with a robust Go and Gin backend, Showcasing both my backend and frontend skills. It features a custom-built, secure user authentication system, ensuring data privacy and personalized access. The app offers intuitive note creation, editing, and organization capabilities, with a responsive design for seamless use across devices. ",
-      de: "Diese ausgeklügelte Notizen-Anwendung kombiniert ein elegantes React- und Tailwind-CSS-Frontend mit einem robusten Go- und Gin-Backend und zeigt sowohl meine Backend- als auch meine Frontend-Fähigkeiten. Sie verfügt über ein maßgeschneidertes, sicheres Benutzerauthentifizierungssystem, das Datenschutz und personalisierten Zugriff gewährleistet. Die App bietet intuitive Funktionen für die Erstellung, Bearbeitung und Organisation von Notizen sowie ein responsives Design für eine nahtlose Nutzung auf allen Geräten.",
-    },
-    imageUrl: "/images/notes.png",
-    livePreviewUrl: "https://note-taking-dusky.vercel.app",
-    liveUrl: "https://note-taking-dusky.vercel.app",
-    githubUrl: "https://github.com/Florin12er/NoteTaking",
-    technologies: ["React", "Go", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    tags: ["React", "Go", "TypeScript", "Tailwind CSS"],
-  },
-  {
     id: "4",
     name: {
       en: "Blog Platform",
@@ -232,5 +211,47 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/Florin12er/calculator2",
     technologies: ["JavaScript", "HTML", "CSS"],
     tags: ["Javascript", "HTML", "CSS"],
+  },
+  {
+    id: "10",
+    name: {
+      en: "Authentication system for web apps",
+      de: "Authentifizierungssystem für Web-Apps",
+    },
+    description: {
+      en: "Authentication system with good security",
+      de: "Authentifizierungssystem mit guter Sicherheit",
+    },
+    longDescription: {
+      en: "This project is authenticatin system with good security build for web apps with NextAuth, it has the ability to login , register, Oauth authentication, email verfication, 2 factor authentication and settings",
+      de: "Dieses Projekt ist ein Authentifizierungssystem mit guter Sicherheit für Web-Apps mit NextAuth, es hat die Fähigkeit, sich anzumelden, zu registrieren, OAuth-Authentifizierung zu ermöglichen, E-Mail-Bestätigung, 2-Faktor-Authentifizierung und Einstellungen",
+    },
+    imageUrl: "/images/authentication.png",
+    livePreviewUrl: "https://nextauth-pi-six.vercel.app",
+    liveUrl: "https://nextauth-pi-six.vercel.app",
+    githubUrl: "https://github.com/Florin12er/nextauth",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
+  },
+  {
+    id: "3",
+    name: {
+      en: "Draw App",
+      de: "Zeichen-App",
+    },
+    description: {
+      en: "An simple board where you can draw and insert geometric shapes",
+      de: "Eine einfache Tafel, auf der Sie geometrische Formen zeichnen und einfügen können",
+    },
+    longDescription: {
+      en: "An simple board where you can draw with an pen and insert geometric shapes, Build with Next.js and CodeBlocks and also with the help of an Youtuber called Code with antonio",
+      de: "Ein einfaches Board, auf dem man mit einem Stift zeichnen und geometrische Formen einfügen kann, gebaut mit Next.js und CodeBlocks und auch mit Hilfe eines Youtubers namens Code with antonio",
+    },
+    imageUrl: "/images/Draw.png",
+    livePreviewUrl: "",
+    liveUrl: "https://drawapp-alpha.vercel.app",
+    githubUrl: "https://github.com/Florin12er/drawapp",
+    technologies: ["React", "Next.js", "Typescript", "Prisma"],
+    tags: ["Next.js", "React", "Typescript", "Prisma"],
   },
 ];

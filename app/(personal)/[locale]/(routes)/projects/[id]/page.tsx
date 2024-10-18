@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Switch } from "@/components/ui/switch";
@@ -11,6 +10,7 @@ import { projectsData } from "@/data/projects";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
+import EnlargeableImage from "@/components/ZoomebleImage";
 
 type Locale = "en" | "de";
 
@@ -74,21 +74,18 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         transition={{ duration: 0.5 }}
         className="mb-8 relative overflow-hidden shadow-lg mx-auto"
         style={{
-          height: isMobile ? "400px" : "800px",
+          height: isMobile ? "400px" : "670px",
           maxWidth: "1200px",
         }}
       >
         {previewType === "image" && !isMobile ? (
-          <Image
+          <EnlargeableImage
             src={project.imageUrl}
+            width={1200}
+            height={670}
+            isZoomed={false}
             alt={t("projectScreenshot", { projectName: project.name[locale] })}
-            quality={100}
-            priority
-            fill
-            sizes="100vw"
-            style={{
-              objectFit: "contain"
-            }} />
+          />
         ) : project.livePreviewUrl ? (
           <iframe
             src={project.livePreviewUrl}
