@@ -149,7 +149,7 @@ export const ErrorCallout: React.FC<ChildrenProps> = ({ children }) => (
     borderColor="border border-red-200 dark:border-red-800"
     textColor="text-red-800 dark:text-red-100"
     icon={<AlertCircle className="w-5 h-5 text-red-500 dark:text-red-300" />}
-    title="Error"
+    title="Warning!!!"
   >
     {children}
   </CalloutWrapper>
@@ -175,7 +175,7 @@ export const ErrorAlert: React.FC<ChildrenProps> = ({ children }) => (
     borderColor="border border-red-200 dark:border-red-800"
     textColor="text-red-800 dark:text-red-100"
     icon={<AlertTriangle className="w-5 h-5 text-red-500 dark:text-red-300" />}
-    title="Error"
+    title="Warning"
   >
     {children}
   </AlertWrapper>
