@@ -1,4 +1,3 @@
-// app/api/posts/[slug]/route.ts
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
@@ -9,14 +8,26 @@ export async function GET(
   { params }: { params: { slug: string } },
 ) {
   const { slug } = params;
-  const postsDirectory = path.join(process.cwd(), "_posts");
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const postsDirectoryEN = path.join(process.cwd(), "_posts/en/");
+  const postsDirectoryDE = path.join(process.cwd(), "_posts/de/");
+  const directories = [postsDirectoryEN, postsDirectoryDE];
 
-  if (!fs.existsSync(fullPath)) {
+  let fileContents = null;
+  let fullPath = "";
+
+  // Iterate through both directories to find the post
+  for (const directory of directories) {
+    fullPath = path.join(directory, `${slug}.md`);
+    if (fs.existsSync(fullPath)) {
+      fileContents = fs.readFileSync(fullPath, "utf8");
+      break;
+    }
+  }
+
+  if (!fileContents) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   const imageUrl = data.image || "/images/Jotion";

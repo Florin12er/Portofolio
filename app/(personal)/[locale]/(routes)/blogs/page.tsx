@@ -64,9 +64,8 @@ export default function Blogs() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const router = useRouter();
-
   useEffect(() => {
-    fetch("/api/posts")
+    fetch(`/api/posts?locale=${locale}`)
       .then((response) => response.json())
       .then((fetchedPosts: BlogPost[]) => {
         setPosts(fetchedPosts);
@@ -74,7 +73,7 @@ export default function Blogs() {
       .catch((error) => {
         console.error(t("fetchError"), error);
       });
-  }, [t]);
+  }, [locale, t]);
 
   const filteredPosts = posts.filter(
     (post: BlogPost) =>

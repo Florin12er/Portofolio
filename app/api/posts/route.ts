@@ -3,42 +3,36 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
-import remarkGfm from "remark-gfm";
 
-export async function GET() {
-  const postsDirectory = path.join(process.cwd(), "_posts");
-  const fileNames = fs.readdirSync(postsDirectory);
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") || "en"; // Default to English if no locale is specified
+  const postsDirectory = path.join(process.cwd(), "_posts", locale);
 
-  const posts = await Promise.all(
-    fileNames.map(async (fileName) => {
-      const slug = fileName.replace(/\.md$/, "");
-      const fullPath = path.join(postsDirectory, fileName);
+  if (!fs.existsSync(postsDirectory)) {
+    return NextResponse.json(
+      { error: "No posts available for this locale" },
+      { status: 404 },
+    );
+  }
+
+  const filenames = fs.readdirSync(postsDirectory);
+  const posts = filenames
+    .filter((file) => file.endsWith(".md"))
+    .map((filename) => {
+      const fullPath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data, content } = matter(fileContents);
 
-      const processedContent = await remark()
-        .use(html)
-        .use(remarkGfm)
-        .process(content);
-      const contentHtml = processedContent.toString();
-
-      const imageUrl = data.image || "/images/Jotion.png";
-
       return {
-        slug,
+        slug: filename.replace(/\.md$/, ""),
         title: data.title,
         date: data.date,
         tags: data.tags || [],
-        content: contentHtml,
-        rawContent: content,
-        imageUrl: imageUrl,
+        content: content,
+        imageUrl: data.image || "/images/Jotion.png",
       };
-    }),
-  );
-
-  posts.sort((a, b) => (a.date > b.date ? -1 : 1));
+    });
 
   return NextResponse.json(posts);
 }
