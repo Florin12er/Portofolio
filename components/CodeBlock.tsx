@@ -22,7 +22,7 @@ export const CodeBlock: React.FC<{
 
   if (!language) {
     return (
-      <code className="bg-gray-200 dark:bg-gray-800 text-inherit px-1 py-0.5 rounded text-sm inline-block">
+      <code className="bg-gray-200 dark:bg-gray-700 text-inherit px-1 py-0.5 rounded text-sm inline-block">
         {code}
       </code>
     );
