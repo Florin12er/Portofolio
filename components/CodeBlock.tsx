@@ -1,3 +1,4 @@
+import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CopyButton from "./CopyButton";
@@ -9,17 +10,23 @@ export const CodeBlock: React.FC<{
 }> = ({ inline, className, children }) => {
   const match = /language-(\w+)/.exec(className || "");
   const language = match ? match[1] : "";
+  const code = String(children).replace(/\n$/, "");
 
   if (inline) {
     return (
-      <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm">
+      <code className="bg-gray-200 dark:bg-gray-800 text-inherit px-1 py-0.5 rounded text-sm">
         {children}
       </code>
     );
   }
 
-  const code = String(children).replace(/\n$/, "");
-
+  if (!language) {
+    return (
+      <code className="bg-gray-200 dark:bg-gray-800 text-inherit px-1 py-0.5 rounded text-sm inline-block">
+        {code}
+      </code>
+    );
+  }
   return (
     <div className="relative">
       <div className="absolute top-0 left-0 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-br px-2 py-1 text-xs font-mono">
