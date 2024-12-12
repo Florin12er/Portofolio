@@ -16,13 +16,11 @@
     "getInTouch": "Kontakt aufnehmen",
     "aboutMe": "Über mich",
     "profileAlt": "Profilbild",
-    "aboutDescription": "Ich bin ein autodidaktischer Fullstack-Entwickler mit Leidenschaft für die Erstellung innovativer Weblösungen. Meine Expertise umfasst:",
-    "skillsFrontend": "Frontend: JavaScript, React, CSS, HTML und Tailwind",
-    "skillsBackend": "Backend: Node.js, Go und Python Django",
-    "skillsDatabases": "Datenbanken: MongoDB, PostgreSQL und MySQL",
-    "skillsDevOps": "DevOps: Linux, Bash und Zsh-Scripting",
-    "collaborationInvitation": "Ich freue mich darauf, an Projekten mitzuarbeiten oder Vollzeitmöglichkeiten zu erkunden. Lassen Sie uns gemeinsam etwas Großartiges schaffen!",
-    "skills": "Fähigkeiten"
+    "aboutDescription": "Ich bin ein autodidaktischer Entwickler aus Rumänien 🇷🇴. Jetzt lebe ich in Deutschland 🥨. Seit 2022 kanalisiere ich meinen inneren Programmierer und verwandle komplexe Probleme in schlanke, effiziente Lösungen - denn warum sollte man Dinge kompliziert machen, wenn man sie einfach (und fehlerfrei) machen kann? Wenn ich nicht gerade an meinem Bildschirm klebe, findet man mich im Fitnessstudio, wo ich mehr als nur meine Stimmung hebe, oder ich spaziere durch den Park und gebe vor, ein tiefgründiger Denker zu sein, obwohl ich in Wirklichkeit nur versuche, mich daran zu erinnern, ob ich meinen Kaffee auf dem Schreibtisch vergessen habe..,",
+    "skills": "Fähigkeiten",
+    "viewProjects": "Projekte ansehen",
+    "featuredBlogs": "Ausgewählte Blogbeiträge",
+    "myHobbies": "Meine Hobbies und Interessen"
   },
   "Footer": {
     "quickLinks": "Schnellzugriff",
