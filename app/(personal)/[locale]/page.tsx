@@ -98,7 +98,7 @@ export default function Home() {
                     </motion.div>
                 </div>
             </motion.section>
-
+            <FeaturedBlogs />
             {/* Skills Section */}
             <motion.section
                 initial={{ opacity: 0 }}
@@ -144,7 +144,6 @@ export default function Home() {
                 </h2>
                 <HobbyChart />
             </motion.section>
-            <FeaturedBlogs />
         </div>
     );
 }
