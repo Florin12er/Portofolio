@@ -59,7 +59,7 @@ const FeaturedBlogs = () => {
       transition={{ duration: 0.5, delay: 1.2 }}
       className="mt-20"
     >
-      <h2 className="text-3xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">
+      <h2 className="text-3xl font-bold mb-12 text-center text-blue-600 dark:text-blue-400">
         {t("featuredBlogs")}
       </h2>
       <div className="relative">
