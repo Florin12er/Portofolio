@@ -32,7 +32,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
       <CardHeader>
-        <div className="relative w-full h-48 mb-4">
+        <div className="relative w-full h-52 mb-4">
           <Link href={`/blogs/${post.slug}`}>
             <Image
               src={post.imageUrl || "/images/Jotion.png"}
@@ -40,7 +40,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
               className="rounded-t-lg"
               quality={100}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+              sizes="(max-width: 680px) 101vw, (max-width: 790px) 52vw, 34vw"
               style={{ objectFit: "cover" }}
             />
           </Link>

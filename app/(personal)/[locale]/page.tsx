@@ -48,6 +48,7 @@ export default function Home() {
                     </Link>
                 </motion.div>
             </motion.section>
+            <FeaturedBlogs />
 
             <motion.section
                 initial={{ opacity: 0 }}
@@ -98,7 +99,7 @@ export default function Home() {
                     </motion.div>
                 </div>
             </motion.section>
-            <FeaturedBlogs />
+
             {/* Skills Section */}
             <motion.section
                 initial={{ opacity: 0 }}
