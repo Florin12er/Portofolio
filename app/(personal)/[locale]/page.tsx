@@ -49,7 +49,7 @@ export default function Home() {
                 </motion.div>
             </motion.section>
             <FeaturedBlogs />
-
+            <br/>
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
