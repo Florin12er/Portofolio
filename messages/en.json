@@ -20,7 +20,13 @@
     "skills": "Programming Skills",
     "viewProjects": "View Projects",
     "featuredBlogs": "Featured Blog Posts",
-    "myHobbies": "Hobbies and skills"
+    "myHobbies": "Hobbies and skills",
+  "hobbyOne": "Coding",
+  "hobbyTwo": "Gym Workouts",
+  "hobbyThree": "Drinking Coffee",
+  "hobbyFour": "Walking",
+  "hobbyFive": "Problem-Solving"
+
   },
   "Footer": {
     "quickLinks": "Quick Links",

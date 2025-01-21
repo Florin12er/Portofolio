@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
     Bar,
     BarChart,
@@ -6,6 +7,7 @@ import {
     YAxis,
     Tooltip,
     ResponsiveContainer,
+    Cell,
 } from "recharts";
 import {
     Card,
@@ -22,22 +24,6 @@ import {
     FaPuzzlePiece,
 } from "react-icons/fa";
 
-const chartData = [
-    { hobby: "Coding", level: 3, fill: "#4CAF50", icon: FaCode },
-    { hobby: "Gym Workouts", level: 2, fill: "#FF5722", icon: FaDumbbell },
-    { hobby: "Drinking Coffee", level: 4, fill: "#2196F3", icon: FaCoffee },
-    { hobby: "Walking", level: 1, fill: "#FFC107", icon: FaWalking },
-    { hobby: "Problem-Solving", level: 3, fill: "#9C27B0", icon: FaPuzzlePiece },
-];
-
-const chartConfig = {
-    Coding: { label: "Coding" },
-    "Gym Workouts": { label: "Gym Workouts" },
-    "Drinking Coffee": { label: "Drinking Coffee" },
-    Walking: { label: "Walking" },
-    "Problem-Solving": { label: "Problem-Solving" },
-} satisfies ChartConfig;
-
 const levels = ["Newbie", "Geek", "Ninja", "Jedi"];
 
 interface CustomTooltipProps {
@@ -53,12 +39,12 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
                 <p
                     className="font-bold"
                     style={{
-                        color: chartData.find((item) => item.hobby === hobby)?.fill,
+                        color: payload[0].payload.fill,
                     }}
                 >
                     {hobby}
                 </p>
-                <p>{levels[level - 1]}</p> {/* Displaying the level name */}
+                <p>{levels[level - 1]}</p>
             </div>
         );
     }
@@ -67,6 +53,24 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 };
 
 export function HobbyChart() {
+    const t = useTranslations("Home");
+
+    const chartData = [
+        { hobby: t("hobbyOne"), level: 3, fill: "#4CAF50", icon: FaCode },
+        { hobby: t("hobbyTwo"), level: 2, fill: "#FF5722", icon: FaDumbbell },
+        { hobby: t("hobbyThree"), level: 4, fill: "#2196F3", icon: FaCoffee },
+        { hobby: t("hobbyFour"), level: 1, fill: "#FFC107", icon: FaWalking },
+        { hobby: t("hobbyFive"), level: 3, fill: "#9C27B0", icon: FaPuzzlePiece },
+    ];
+
+    const chartConfig = {
+        [t("hobbyOne")]: { label: t("hobbyOne") },
+        [t("hobbyTwo")]: { label: t("hobbyTwo") },
+        [t("hobbyThree")]: { label: t("hobbyThree")},
+        [t("hobbyFour")]: { label: t("hobbyFour") },
+        [t("hobbyFive")]: { label: t("hobbyFive") },
+    } as ChartConfig;
+
     return (
         <Card className="bg-white dark:bg-gray-800 shadow-xl rounded-xl overflow-hidden">
             <CardHeader className="text-white"></CardHeader>
@@ -85,27 +89,28 @@ export function HobbyChart() {
                                 tickMargin={10}
                                 axisLine={false}
                                 tick={{ fill: "#666", fontSize: 12 }}
-                                tickFormatter={(value) =>
-                                    chartConfig[value as keyof typeof chartConfig]?.label
-                                }
+                                tickFormatter={(value) => chartConfig[value]?.label || value}
                             />
                             <YAxis
                                 dataKey="level"
                                 type="number"
-                                domain={[0, levels.length]} // Adjust domain based on levels
-                                ticks={[1, 2, 3, 4]} // Corresponding to Newbie, Geek, Ninja, Jedi
-                                tickFormatter={(value) => levels[value - 1]} // Map values to levels
+                                domain={[0, levels.length]}
+                                ticks={[1, 2, 3, 4]}
+                                tickFormatter={(value) => levels[value - 1]}
                                 tickLine={false}
                                 axisLine={false}
                             />
-                            <Tooltip content={<CustomTooltip />} /> {/* Use custom tooltip */}
+                            <Tooltip content={<CustomTooltip />} />
                             <Bar
-                                dataKey="level"
-                                radius={[8, 8, 0, 0]}
-                                // @ts-ignore
-                                fill={(data) => data.fill}
-                                strokeWidth={2}
-                            />
+    dataKey="level"
+    radius={[8, 8, 0, 0]}
+    strokeWidth={2}
+>
+    {chartData.map((entry, index) => (
+        <Cell key={`cell-${index}`} fill={entry.fill} />
+    ))}
+</Bar>
+
                         </BarChart>
                     </ResponsiveContainer>
                 </ChartContainer>
