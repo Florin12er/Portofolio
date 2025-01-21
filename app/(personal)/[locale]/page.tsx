@@ -50,6 +50,8 @@ export default function Home() {
             </motion.section>
             <FeaturedBlogs />
             <br/>
+            <br />
+            <br />
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
