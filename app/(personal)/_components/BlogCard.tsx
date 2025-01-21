@@ -32,7 +32,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
       <CardHeader>
-        <div className="relative w-full h-72 mb-4">
+        <div className="relative w-full h-64 mb-4">
           <Link href={`/blogs/${post.slug}`}>
             <Image
               src={post.imageUrl || "/images/Jotion.png"}
