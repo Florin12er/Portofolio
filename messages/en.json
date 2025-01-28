@@ -16,17 +16,16 @@
     "getInTouch": "Get in Touch",
     "aboutMe": "About Me",
     "profileAlt": "Profile Picture",
-    "aboutDescription": "I'm a self-taught developer from Romania 🇷🇴. Now based in Germany 🥨, I’ve been channeling my inner programmer since 2022, turning complex problems into sleek, efficient solutions—because why make things complicated when you can make them simple (and bug-free)? When I’m not glued to my screen, you’ll find me at the gym lifting more than just my spirits, or strolling through the park, pretending to be a deep thinker, when really, I’m just trying to remember if I left my coffee on the desk.",
+    "aboutDescription": "I'm a self-taught developer from Romania 🇷🇴. Now based in Germany , I’ve been channeling my inner programmer since 2022, turning complex problems into sleek, efficient solutions—because why make things complicated when you can make them simple (and bug-free)? When I’m not glued to my screen, you’ll find me at the gym lifting more than just my spirits, or strolling through the park, pretending to be a deep thinker, when really, I’m just trying to remember if I left my coffee on the desk.",
     "skills": "Programming Skills",
     "viewProjects": "View Projects",
     "featuredBlogs": "Featured Blog Posts",
     "myHobbies": "Hobbies and skills",
-  "hobbyOne": "Coding",
-  "hobbyTwo": "Gym Workouts",
-  "hobbyThree": "Drinking Coffee",
-  "hobbyFour": "Walking",
-  "hobbyFive": "Problem-Solving"
-
+    "hobbyOne": "Coding",
+    "hobbyTwo": "Gym Workouts",
+    "hobbyThree": "Drinking Coffee",
+    "hobbyFour": "Walking",
+    "hobbyFive": "Problem-Solving"
   },
   "Footer": {
     "quickLinks": "Quick Links",
@@ -66,7 +65,8 @@
     "viewDetails": "View Details",
     "viewGitHub": "View on GitHub",
     "viewLive": "View Live Site",
-    "noProjectsFound": "No projects found matching your search."
+    "noProjectsFound": "No projects found matching your search.",
+    "featuredProjects": "My Projects"
   },
   "ProjectPage": {
     "livePreview": "Live Preview",

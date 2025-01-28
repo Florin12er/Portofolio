@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { projectsData } from "@/data/projects";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
@@ -8,6 +10,12 @@ import { useTranslations } from "next-intl";
 import { skills } from "@/data/technologies";
 import { HobbyChart } from "./_components/bar-chart";
 import FeaturedBlogs from "./_components/featured-blogs";
+import FeaturedProjects from "./_components/featured-projects";
+const Divider = () => (
+    <div className="my-20 flex justify-center">
+      <div className="w-1/3 h-1 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full"></div>
+    </div>
+  );
 
 export default function Home() {
     const t = useTranslations("Home");
@@ -49,14 +57,12 @@ export default function Home() {
                 </motion.div>
             </motion.section>
             <FeaturedBlogs />
-            <br/>
-            <br />
-            <br />
+            <Divider/>
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mb-40 rounded-xl"
+                className="rounded-xl"
             >
                 <h2 className="text-4xl font-bold mb-8 text-center text-blue-600 dark:text-blue-400">
                     {t("aboutMe")}
@@ -101,13 +107,14 @@ export default function Home() {
                     </motion.div>
                 </div>
             </motion.section>
+            <Divider/>
 
             {/* Skills Section */}
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="p-8 mb-40"
+                className="p-8"
             >
                 <h2 className="text-4xl font-bold mb-8 text-center text-teal-600 dark:text-teal-400">
                     {t("skills")}
@@ -135,6 +142,7 @@ export default function Home() {
                     })}
                 </div>
             </motion.section>
+            <Divider/>
 
             <motion.section
                 initial={{ opacity: 0 }}
@@ -146,6 +154,8 @@ export default function Home() {
                     {t("myHobbies")}
                 </h2>
                 <HobbyChart />
+            <Divider/>
+                <FeaturedProjects projects={projectsData}/>
             </motion.section>
         </div>
     );
