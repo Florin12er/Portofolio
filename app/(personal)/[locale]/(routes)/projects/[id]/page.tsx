@@ -35,7 +35,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   }
 
   const projectTechnologies = skills.filter((tech) =>
-    project.technologies.includes(tech.name),
+    project.technologies.includes(tech.name)
   );
 
   return (
