@@ -6,7 +6,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -28,14 +35,14 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
   const locale = useLocale() as Locale;
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex + 3 >= projects.length) ? 0 : prevIndex + 3
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 3 >= projects.length ? 0 : prevIndex + 3
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex - 3 < 0) ? Math.max(projects.length - 3, 0) : prevIndex - 3
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 3 < 0 ? Math.max(projects.length - 3, 0) : prevIndex - 3
     );
   };
 
@@ -56,7 +63,12 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
           {visibleProjects.map((project) => (
             <motion.div
               key={project.id}
-              whileHover={{ scale: 1.05 }}
+              className="border-2 border-transparent"
+              whileHover={{
+                scale: 1.05,
+                border: "2px solid #3674B5",
+                borderRadius: "10px",
+              }}
               whileTap={{ scale: 0.95 }}
             >
               <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
@@ -74,7 +86,9 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
                       />
                     </Link>
                   </div>
-                  <CardTitle className="text-xl font-bold">{project.name[locale]}</CardTitle>
+                  <CardTitle className="text-xl font-bold">
+                    {project.name[locale]}
+                  </CardTitle>
                   <CardDescription className="text-sm text-gray-500">
                     {project.description[locale]}
                   </CardDescription>

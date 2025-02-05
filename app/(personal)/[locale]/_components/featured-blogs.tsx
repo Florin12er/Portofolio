@@ -39,14 +39,14 @@ const FeaturedBlogs = () => {
   }, [locale]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex + 3 >= allPosts.length) ? 0 : prevIndex + 3
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 3 >= allPosts.length ? 0 : prevIndex + 3
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      (prevIndex - 3 < 0) ? Math.max(allPosts.length - 3, 0) : prevIndex - 3
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 3 < 0 ? Math.max(allPosts.length - 3, 0) : prevIndex - 3
     );
   };
 
@@ -67,7 +67,12 @@ const FeaturedBlogs = () => {
           {visiblePosts.map((post) => (
             <motion.div
               key={post.slug}
-              whileHover={{ scale: 1.05 }}
+              className="border-2 border-transparent"
+              whileHover={{
+                scale: 1.05,
+                border: "2px solid #3674B5",
+                borderRadius: "10px",
+              }}
               whileTap={{ scale: 0.95 }}
             >
               <BlogCard post={post} />
