@@ -117,5 +117,7 @@ Happy reading! 🌟
 
 <div class="tip">
     Did you find this post helpful? Share it with others looking for ways to live more mindfully and ethically. 🌱
-    also here is a link to some the books mentioned in pdf formtat [here](https://drive.google.com/drive/folders/1BFHM1uqOujsLKbrjXtKv9O8j8250v7Le?usp=drive_link)
+    also here is a link to some the books mentioned in pdf formtat: 
+
+    [here](https://drive.google.com/drive/folders/1BFHM1uqOujsLKbrjXtKv9O8j8250v7Le?usp=drive_link)
 </div>
