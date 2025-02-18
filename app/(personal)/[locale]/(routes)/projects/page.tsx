@@ -8,13 +8,70 @@ import { SearchInput } from "./SearchInput";
 import { ProjectCard } from "./ProjectCard";
 import { projectsData, Project } from "@/data/projects";
 import { useLocale } from "next-intl";
+type Locale = "en" | "de";
+
+type TagKey =
+  | "react"
+  | "nextjs"
+  | "typescript"
+  | "tailwind"
+  | "javascript"
+  | "html"
+  | "nodejs"
+  | "css"
+  | "mongodb";
+
+type TranslationsType = {
+  [key in Locale]: {
+    [tag in TagKey]: string;
+  };
+};
+
+const tagTranslations: TranslationsType = {
+  en: {
+    react: "React",
+    nextjs: "Next.js",
+    typescript: "TypeScript",
+    tailwind: "Tailwind CSS",
+    javascript: "Javascript",
+    html: "HTML",
+    nodejs: "NodeJS",
+    css: "CSS",
+    mongodb: "MongoDB",
+  },
+  de: {
+    react: "React",
+    nextjs: "Next.js",
+    typescript: "TypeScript",
+    tailwind: "Tailwind CSS",
+    javascript: "Javascript",
+    html: "HTML",
+    nodejs: "NodeJS",
+    css: "CSS",
+    mongodb: "MongoDB",
+  },
+};
+
+const tagKeys: TagKey[] = [
+  "react",
+  "nextjs",
+  "typescript",
+  "tailwind",
+  "javascript",
+  "html",
+  "nodejs",
+  "css",
+  "mongodb",
+];
 
 export default function ProjectsPage() {
   const t = useTranslations("Projects");
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const router = useRouter();
+
+  const tags = tagKeys.map((key) => tagTranslations[locale][key]);
 
   const filteredProjects = projectsData.filter(
     (project: Project) =>
@@ -29,6 +86,7 @@ export default function ProjectsPage() {
         )) &&
       (!selectedTag || project.tags.includes(selectedTag))
   );
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
@@ -52,6 +110,13 @@ export default function ProjectsPage() {
       }
     );
   };
+  const clearSearch = () => {
+    router.push(`/${locale}/projects`, {
+      scroll: false,
+    });
+    setSelectedTag(null);
+    setSearchTerm("");
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -70,9 +135,26 @@ export default function ProjectsPage() {
 
       <SearchInput
         value={searchTerm}
+        onClear={clearSearch}
         onChange={handleSearchChange}
         placeholder={t("searchPlaceholder")}
       />
+
+      <div className="mb-6 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <button
+            key={tag}
+            className={`px-4 py-2 rounded-full border-2 hover:bg-blue-400 hover:text-white ${
+              selectedTag === tag
+                ? "bg-blue-500 text-white dark:bg-blue-400 dark:text-white hover:bg-blue-600 dark:hover:bg-blue-500"
+                : "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+            }`}
+            onClick={() => handleTagClick(tag)}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
 
       <AnimatePresence>
         <motion.div

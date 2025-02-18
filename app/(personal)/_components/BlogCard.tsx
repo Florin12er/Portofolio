@@ -1,4 +1,4 @@
-"use client";
+Code : BlogCard : "use client";
 
 import React from "react";
 import Link from "next/link";
@@ -12,6 +12,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { ArrowRight, CalendarIcon, Clock } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 interface BlogPost {
   slug: string;
@@ -28,6 +29,9 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
   };
+
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search");
 
   return (
     <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
@@ -53,12 +57,19 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
       <CardContent className="flex-grow">
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="text-xs font-medium px-2.5 py-0.5 rounded bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-            >
-              {tag}
-            </span>
+            <Link key={index} href={`/blogs?search=${encodeURIComponent(tag)}`}>
+              <p>
+                <span
+                  className={`text-xs font-medium px-2.5 py-0.5 rounded transition-colors ${
+                    searchQuery === tag
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 hover:bg-gray-300"
+                  } hover:bg-blue-400 hover:text-white`}
+                >
+                  {tag}
+                </span>
+              </p>
+            </Link>
           ))}
         </div>
       </CardContent>
