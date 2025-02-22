@@ -1,34 +1,8 @@
 import { motion } from "framer-motion";
 import { Skill } from "@/data/technologies";
 import { IconType } from "react-icons";
-import {
-  Formats,
-  MarkupTranslationValues,
-  RichTranslationValues,
-  TranslationValues,
-} from "next-intl";
-import { ReactElement, ReactNode } from "react";
-
 type ProjectTechnologiesProps = {
   projectTechnologies: Skill[];
-  t: {
-    <TargetKey extends unknown>(
-      key: TargetKey,
-      values?: TranslationValues,
-      formats?: Partial<Formats>
-    ): string;
-    rich<TargetKey extends unknown>(
-      key: TargetKey,
-      values?: RichTranslationValues | undefined,
-      formats?: Partial<Formats> | undefined
-    ): string | ReactElement | ReadonlyArray<ReactNode>;
-    markup<TargetKey extends unknown>(
-      key: TargetKey,
-      values?: MarkupTranslationValues,
-      formats?: Partial<Formats> | undefined
-    ): string;
-    raw<TargetKey extends unknown>(key: TargetKey): any;
-  };
 };
 
 const TechnologiesUsed = ({

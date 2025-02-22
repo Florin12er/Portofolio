@@ -8,7 +8,7 @@ import ProjectLinks from "./ProjectLinks";
 import { projectsData } from "@/data/projects";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
-import { skills } from "@/data/technologies"; // Import the skills data
+import { skills } from "@/data/technologies";
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const t = useTranslations("ProjectPage");
@@ -30,7 +30,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  // Map project technologies to the Skill objects
   const projectTechnologies = skills.filter((tech) =>
     project?.technologies.includes(tech.name)
   );
@@ -60,7 +59,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         t={t}
       />
 
-      <TechnologiesUsed projectTechnologies={projectTechnologies} t={t} />
+      <TechnologiesUsed projectTechnologies={projectTechnologies} />
 
       <ProjectLinks
         liveUrl={project?.liveUrl}

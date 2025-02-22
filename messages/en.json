@@ -4,6 +4,9 @@
     "projects": "Projects",
     "blogs": "Blogs",
     "contact": "Contact",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
     "sebastianPortfolio": "Sebastian's Portfolio",
     "mobileNavDescription": "Mobile Navigation"
   },
@@ -103,5 +106,27 @@
     "submitComment": "Submit Comment",
     "backToAllBlogs": "Back to All Blogs",
     "share": "Share"
+  },
+  "SignIn": {
+    "enterEmail": "Enter your email below to login to your account",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "signInGoogle": "Sign in with Google",
+    "signInGithub": "Sign in with Github",
+    "notAccount": "Don't have an account?",
+    "login": "Login",
+    "signUp": "Sign up here"
+  },
+  "SignUp": {
+    "enterInformation": "Enter your information to create an account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "image": "Profile Image (optional)",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in here" ,
+    "register": "Register",
+    "createAccount": "Create an account"
   }
 }

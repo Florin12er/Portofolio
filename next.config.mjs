@@ -30,6 +30,19 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+      // Add the Googleusercontent domain here
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   reactStrictMode: true,
@@ -38,4 +51,5 @@ const nextConfig = {
     return config;
   },
 };
+
 export default withNextIntl(nextConfig);
