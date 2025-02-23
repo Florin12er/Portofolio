@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Tag } from "./Tag";
-import { Project } from "@/data/projects";
+import { Project } from "./types";
 
 interface ProjectCardProps {
   project: Project;

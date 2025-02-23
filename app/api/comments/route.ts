@@ -14,7 +14,7 @@ const commentSchema = z.object({
 });
 
 // Rate limiting
-const RATE_LIMIT = 1000;
+const RATE_LIMIT = 10;
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 export async function POST(req: NextRequest) {
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     if (recentComments >= RATE_LIMIT) {
       return NextResponse.json(
         { error: "Rate limit exceeded" },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
   if (!postSlug) {
     return NextResponse.json(
       { error: "Post slug is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

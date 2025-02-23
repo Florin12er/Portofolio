@@ -36,13 +36,13 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + 3 >= projects.length ? 0 : prevIndex + 3
+      prevIndex + 3 >= projects.length ? 0 : prevIndex + 3,
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - 3 < 0 ? Math.max(projects.length - 3, 0) : prevIndex - 3
+      prevIndex - 3 < 0 ? Math.max(projects.length - 3, 0) : prevIndex - 3,
     );
   };
 
