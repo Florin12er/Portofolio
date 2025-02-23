@@ -10,35 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Comment {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  content   String
-  createdAt DateTime   @default(now())
-  postSlug  String
-  ipAddress String
-  responses Response[]
-}
-
-model Response {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  content   String
-  createdAt DateTime @default(now())
-  ipAddress String
-  comment   Comment  @relation(fields: [commentId], references: [id])
-  commentId String   @db.ObjectId
-}
-
-model Like {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  postSlug  String
-  ipAddress String
-  createdAt DateTime @default(now())
-
-  @@unique([postSlug, ipAddress])
-}
-
 model User {
   id            String    @id @map("_id")
   name          String
@@ -49,6 +20,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  Like          Like[]
 
   @@unique([email])
   @@map("user")
@@ -97,4 +69,36 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Comment {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  image     String?
+  content   String
+  createdAt DateTime   @default(now())
+  postSlug  String
+  ipAddress String
+  responses Response[]
+}
+
+model Response {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  image     String?
+  content   String
+  createdAt DateTime @default(now())
+  ipAddress String
+  comment   Comment  @relation(fields: [commentId], references: [id])
+  commentId String   @db.ObjectId
+}
+
+model Like {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  postSlug  String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([postSlug])
 }

@@ -10,20 +10,20 @@ const commentSchema = z.object({
   name: z.string().min(1).max(50),
   content: z.string().min(1).max(500),
   postSlug: z.string(),
+  image: z.string().optional(),
 });
 
 // Rate limiting
-const RATE_LIMIT = 5;
+const RATE_LIMIT = 1000;
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, content, postSlug } = commentSchema.parse(body);
+    const { name, content, postSlug, image } = commentSchema.parse(body);
 
     const ipAddress = req.headers.get("x-forwarded-for") || req.ip || "unknown";
 
-    // Check rate limit
     const recentComments = await prisma.comment.count({
       where: {
         ipAddress,
@@ -36,16 +36,16 @@ export async function POST(req: NextRequest) {
     if (recentComments >= RATE_LIMIT) {
       return NextResponse.json(
         { error: "Rate limit exceeded" },
-        { status: 429 },
+        { status: 429 }
       );
     }
 
-    // Create comment
     const comment = await prisma.comment.create({
       data: {
         name,
         content,
         postSlug,
+        image: image || "/images/avatar.png",
         ipAddress,
       },
     });
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
   if (!postSlug) {
     return NextResponse.json(
       { error: "Post slug is required" },
-      { status: 400 },
+      { status: 400 }
     );
   }
 

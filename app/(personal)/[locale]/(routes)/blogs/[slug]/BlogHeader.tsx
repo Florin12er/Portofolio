@@ -1,5 +1,4 @@
-"use client";
-
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +10,13 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import EnlargeableImage from "@/components/ZoomebleImage";
+import { BlogPost } from "./types";
+import Link from "next/link";
 
 interface BlogHeaderProps {
   post: BlogPost;
   likes: number;
   commentsCount: number;
-  hasLiked: boolean;
   onLike: () => void;
   onShare: () => void;
 }
@@ -24,11 +24,19 @@ export default function BlogHeader({
   post,
   likes,
   commentsCount,
-  hasLiked,
   onLike,
   onShare,
 }: BlogHeaderProps) {
   const t = useTranslations("Blog");
+
+  const [isLiking, setIsLiking] = useState(false);
+
+  const handleLikeClick = () => {
+    setIsLiking(true);
+    onLike();
+
+    setTimeout(() => setIsLiking(false), 1000);
+  };
 
   return (
     <header className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700">
@@ -54,43 +62,48 @@ export default function BlogHeader({
         </span>
       </div>
 
-      {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-4">
         {post.tags.map((tag) => (
           <Badge
             key={tag}
             variant="secondary"
-            className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+            className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
           >
-            {tag}
+            <Link
+              href={`/blogs?search=${tag}`}
+              className="text-gray-800 dark:text-gray-200"
+            >
+              {tag}
+            </Link>
           </Badge>
         ))}
       </div>
 
-      {/* Buttons */}
       <div className="flex space-x-4 mb-6">
         <Button
-          onClick={onLike}
+          onClick={handleLikeClick}
           variant="transparent"
-          className={`flex items-center ${
-            hasLiked ? "bg-green-500 hover:bg-green-600" : ""
+          className={`flex items-center transition-all duration-100 hover:scale-110 hover:bg-gray-200 dark:hover:bg-gray-700 ${
+            isLiking
+              ? "bg-gradient-to-r from-pink-500 via-yellow-500 to-blue-500 text-white"
+              : ""
           }`}
-          disabled={hasLiked}
         >
-          <ThumbsUp className="w-4 h-4 mr-2" />
-          {hasLiked ? "Liked" : "Like"} ({likes})
+          <ThumbsUp
+            className={`w-4 h-4 mr-2 ${isLiking ? "fill-white" : ""}`}
+          />
+          {likes} {t("likes")}
         </Button>
         <Button
           variant="transparent"
           onClick={onShare}
-          className="flex items-center"
+          className="flex items-center transition-all duration-100 hover:scale-110 hover:bg-gray-200 dark:hover:bg-gray-700"
         >
           <Share2 className="w-4 h-4 mr-2" />
           {t("share")}
         </Button>
       </div>
 
-      {/* Image (moved out of buttons for better positioning) */}
       {post.imageUrl && (
         <div className="w-full max-w-3xl mx-auto mt-8">
           <EnlargeableImage

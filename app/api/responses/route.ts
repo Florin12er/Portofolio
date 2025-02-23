@@ -1,3 +1,4 @@
+// api/responses/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
@@ -8,6 +9,7 @@ const responseSchema = z.object({
   name: z.string().min(1).max(50),
   content: z.string().min(1).max(500),
   commentId: z.string(),
+  image: z.string().optional(),
 });
 
 const RATE_LIMIT = 5;
@@ -16,7 +18,7 @@ const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, content, commentId } = responseSchema.parse(body);
+    const { name, content, commentId, image } = responseSchema.parse(body);
 
     const ipAddress = req.headers.get("x-forwarded-for") || req.ip || "unknown";
 
@@ -33,7 +35,7 @@ export async function POST(req: NextRequest) {
     if (recentResponses >= RATE_LIMIT) {
       return NextResponse.json(
         { error: "Rate limit exceeded" },
-        { status: 429 },
+        { status: 429 }
       );
     }
 
@@ -43,6 +45,7 @@ export async function POST(req: NextRequest) {
         name,
         content,
         commentId,
+        image: image || "/images/avatar.png",
         ipAddress,
       },
     });
@@ -54,7 +57,7 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

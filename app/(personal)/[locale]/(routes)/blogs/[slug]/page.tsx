@@ -1,3 +1,4 @@
+// app/(personal)/[locale]/(routes)/blogs/[slug]/page.tsx
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -12,6 +13,18 @@ import NotificationModal from "./NotificationModal";
 import TocSidebar from "./TocSidebar";
 import { CommentForm } from "./CommentForm";
 import { CommentList } from "./CommentList";
+import { Comment } from "./types";
+import { useSession } from "@/lib/auth-client";
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  tags: string[];
+  content: string;
+  imageUrl?: string;
+  likes: number;
+}
 
 export default function BlogPost() {
   const t = useTranslations("Blog");
@@ -21,7 +34,6 @@ export default function BlogPost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [likes, setLikes] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
   const [showToc, setShowToc] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -29,6 +41,7 @@ export default function BlogPost() {
     description: "",
   });
   const [toc, setToc] = useState<TocItem[]>([]);
+  const { data: session, isPending } = useSession();
 
   const fetchComments = useCallback(async () => {
     const res = await fetch(`/api/comments?postSlug=${slug}`);
@@ -52,7 +65,6 @@ export default function BlogPost() {
           if (likesRes.ok) {
             const likesData = await likesRes.json();
             setLikes(likesData.likes);
-            setHasLiked(likesData.hasLiked);
           }
         } else {
           setError("Failed to load blog post");
@@ -130,11 +142,26 @@ export default function BlogPost() {
   };
 
   const handleLike = async () => {
-    const res = await fetch(`/api/likes/${slug}`, { method: "POST" });
+    const email = session?.user.email;
+
+    if (!email) {
+      setModalContent({
+        title: t("likeFailedEmailNotFound"),
+        description: t("emailNotFound"),
+      });
+      setModalOpen(true);
+      return;
+    }
+
+    const res = await fetch(`/api/likes/${slug}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
     if (res.ok) {
       const data = await res.json();
       setLikes(data.likes);
-      setHasLiked(true);
       setModalContent({
         title: t("likeAdded"),
         description: t("likeAddedDescription"),
@@ -185,7 +212,6 @@ export default function BlogPost() {
                 post={post}
                 likes={likes}
                 commentsCount={comments.length}
-                hasLiked={hasLiked}
                 onLike={handleLike}
                 onShare={handleShare}
               />

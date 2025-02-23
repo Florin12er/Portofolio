@@ -10,14 +10,7 @@ import { MobileNavbar } from "@/app/(personal)/_components/mobile-sidebar";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
-import Image from "next/image";
-import { signOut, useSession } from "@/lib/auth-client";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useSession } from "@/lib/auth-client";
 import { Loader } from "./ui/loader";
 import { UserButton } from "./userButton";
 

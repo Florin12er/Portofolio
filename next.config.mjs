@@ -36,7 +36,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      // Add the Googleusercontent domain here
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",

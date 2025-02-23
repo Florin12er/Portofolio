@@ -6,13 +6,13 @@ import matter from "gray-matter";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const locale = searchParams.get("locale") || "en"; // Default to English if no locale is specified
+  const locale = searchParams.get("locale") || "en";
   const postsDirectory = path.join(process.cwd(), "_posts", locale);
 
   if (!fs.existsSync(postsDirectory)) {
     return NextResponse.json(
       { error: "No posts available for this locale" },
-      { status: 404 },
+      { status: 404 }
     );
   }
 

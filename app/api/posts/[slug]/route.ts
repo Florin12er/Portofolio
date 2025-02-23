@@ -6,7 +6,7 @@ import matter from "gray-matter";
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: { slug: string } }
 ) {
   const { slug } = params;
   const postsDirectoryEN = path.join(process.cwd(), "_posts/en/");
@@ -16,7 +16,6 @@ export async function GET(
   let fileContents = null;
   let fullPath = "";
 
-  // Iterate through both directories to find the post
   for (const directory of directories) {
     fullPath = path.join(directory, `${slug}.md`);
     if (fs.existsSync(fullPath)) {

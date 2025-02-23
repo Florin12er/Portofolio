@@ -90,6 +90,8 @@
     "likeAddedDescription": "Danke für Ihre Bewertung. Es wird auf der Blogseite in Klarheit versandt.",
     "likeFailed": "Sie haben bereits diesen Blog bewertet.",
     "likeFailedDescription": "Danke für Ihre Bewertung.",
+    "likeFailedEmailNotFound": "Email nicht gefunden!!!",
+    "emailNotFound": "Email nicht gefunden Sie müssen angemeldet sein um diesen Blog zu bewerten",
     "linkCopied": "Link kopiert",
     "linkCopiedDescription": "Link zum Clipboard kopiert.",
     "minutesRead": "Minuten gelesen",
@@ -105,7 +107,9 @@
     "submitResponse": "Antworten",
     "submitComment": "Kommentar einreichen",
     "backToAllBlogs": "Zurück zur Blogliste",
-    "share": "Teilen"
+    "share": "Teilen",
+    "signIn": "Anmelden",
+    "loginRequiredMessage": "Sie müssen angemeldet sein, um diese Seite zu sehen."
   },
   "SignIn": {
    "enterEmail": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich in Ihr Konto einzuloggen.",
