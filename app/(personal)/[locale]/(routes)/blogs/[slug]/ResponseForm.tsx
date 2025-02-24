@@ -99,7 +99,7 @@ export function ResponseForm({
             <Button
               type="button"
               onClick={() => setEmojiPickerOpen(!emojiPickerOpen)}
-              className="absolute top-2 right-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-2 hidden lg:block hover:bg-gray-200 dark:hover:bg-gray-800"
+              className="absolute top-2 right-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-2 hidden xl:block hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               <MdEmojiEmotions
                 className="text-gray-500 dark:text-gray-400"
@@ -108,7 +108,7 @@ export function ResponseForm({
             </Button>
 
             {emojiPickerOpen && (
-              <div className="absolute bottom-[-100px] right-[-410px] hidden lg:block">
+              <div className="absolute bottom-[-100px] right-[-410px] hidden xl:block">
                 <Picker
                   onEmojiClick={handleEmojiClick}
                   width={350}
