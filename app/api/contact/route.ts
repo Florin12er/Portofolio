@@ -33,8 +33,9 @@ export async function POST(request: Request) {
       to: process.env.EMAIL_USER,
       subject: `New Message from ${name}`,
       html: `
-    <html>
+    <html lang="en">
       <head>
+      <title>New Message from ${name}</title>
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
           .container { padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
