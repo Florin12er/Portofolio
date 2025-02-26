@@ -4,7 +4,7 @@ export default createMiddleware({
   // A list of all locales that are supported
   locales: ["en", "de"],
 
-  // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
+  // If this locale is matched, pathname work without a prefix (e.g. `/about`)
   defaultLocale: "en",
 });
 

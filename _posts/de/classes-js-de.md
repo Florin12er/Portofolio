@@ -104,7 +104,7 @@ class ElektroAuto extends Auto {
 
 # Vererbung
 
-Vererbung ist ein Schlüsselkonzept in der objektorientierten Programmierung, das es ermöglicht, eine neue Klasse basierend auf einer existierenden Klasse zu erstellen. Die neue Klasse, genannt Kindklasse oder Unterklasse, erbt die Eigenschaften und Methoden der Elternklasse, auch Superklasse genannt.
+Vererbung ist ein Schlüsselkonzept in der objektorientierten Programmierung, das es ermöglicht, eine neue Klasse basierend auf einer existierenden Klasse zu erstellen. Die neue Klasse, genannt Kind klasse oder Unterklasse, erbt die Eigenschaften und Methoden der Elternklasse, auch Superklasse genannt.
 
 ```javascript
 class ElektroAuto extends Auto {
