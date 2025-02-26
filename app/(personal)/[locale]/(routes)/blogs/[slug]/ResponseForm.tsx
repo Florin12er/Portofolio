@@ -4,16 +4,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+import { MdEmojiEmotions } from "react-icons/md";
+const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
+declare module "emoji-picker-react" {
+  interface PickerProps {
+    theme?: "light" | "dark";
+  }
+}
 interface ResponseFormProps {
   commentId: string;
   onSubmit: (
     commentId: string,
-    response: { name: string; content: string; image: string }
+    response: { name: string; content: string; image: string },
   ) => Promise<void>;
   isSubmitting: boolean;
 }
-
 export function ResponseForm({
   commentId,
   onSubmit,
@@ -21,8 +29,10 @@ export function ResponseForm({
 }: ResponseFormProps) {
   const t = useTranslations("Blog");
   const [content, setContent] = useState("");
+  const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const { data } = useSession();
-
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const isLoggedIn = !!data?.user?.name;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,6 +45,11 @@ export function ResponseForm({
       image: data.user?.image || "/images/avatar.png",
     });
     setContent("");
+  };
+
+  const handleEmojiClick = (emojiData: any) => {
+    setContent(content + emojiData.emoji);
+    setEmojiPickerOpen(false);
   };
 
   return (
@@ -72,14 +87,37 @@ export function ResponseForm({
             </p>
           </div>
 
-          <Textarea
-            name="content"
-            placeholder={t("responsePlaceholder")}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="mb-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-3"
-            required
-          />
+          <div className="relative">
+            <Textarea
+              name="content"
+              placeholder={t("responsePlaceholder")}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className="mb-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-3"
+              required
+            />
+            <Button
+              type="button"
+              onClick={() => setEmojiPickerOpen(!emojiPickerOpen)}
+              className="absolute top-2 right-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-2 hidden xl:block hover:bg-gray-200 dark:hover:bg-gray-800"
+            >
+              <MdEmojiEmotions
+                className="text-gray-500 dark:text-gray-400"
+                size={20}
+              />
+            </Button>
+
+            {emojiPickerOpen && (
+              <div className="absolute bottom-[-100px] right-[-410px] hidden xl:block">
+                <Picker
+                  onEmojiClick={handleEmojiClick}
+                  width={350}
+                  theme={isDark ? "dark" : "light"}
+                  height={350}
+                />
+              </div>
+            )}
+          </div>
 
           <Button type="submit" disabled={isSubmitting || !content}>
             {isSubmitting ? t("submitting") : t("submitResponse")}

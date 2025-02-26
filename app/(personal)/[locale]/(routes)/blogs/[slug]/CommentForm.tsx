@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { MdEmojiEmotions } from "react-icons/md";
+declare module "emoji-picker-react" {
+  interface PickerProps {
+    theme?: "light" | "dark";
+  }
+}
+
+const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 interface CommentFormProps {
   onSubmit: (comment: {
@@ -22,7 +32,10 @@ export function CommentForm({
 }: CommentFormProps) {
   const t = useTranslations("Blog");
   const [content, setContent] = useState("");
+  const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const { data } = useSession();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const isLoggedIn = !!data?.user?.name;
 
@@ -36,6 +49,11 @@ export function CommentForm({
       image: data.user.image || "/images/avatar.png",
     });
     setContent("");
+  };
+
+  const handleEmojiClick = (emojiData: any) => {
+    setContent(content + emojiData.emoji);
+    setEmojiPickerOpen(false);
   };
 
   return (
@@ -71,14 +89,39 @@ export function CommentForm({
           </p>
         </div>
       )}
+
       {isLoggedIn && (
-        <Textarea
-          placeholder={t("commentPlaceholder")}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="mb-4 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-3"
-          required
-        />
+        <div className="relative">
+          <Textarea
+            placeholder={t("commentPlaceholder")}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="mb-4 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-3"
+            required
+          />
+
+          <Button
+            type="button"
+            onClick={() => setEmojiPickerOpen(!emojiPickerOpen)}
+            className="absolute top-2 right-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-2 hidden xl:block hover:bg-gray-200 dark:hover:bg-gray-800"
+          >
+            <MdEmojiEmotions
+              className="text-gray-500 dark:text-gray-400"
+              size={20}
+            />
+          </Button>
+
+          {emojiPickerOpen && (
+            <div className="absolute bottom-[-100px] right-[-390px] hidden xl:block">
+              <Picker
+                onEmojiClick={handleEmojiClick}
+                width={350}
+                theme={isDark ? "dark" : "light"}
+                height={350}
+              />
+            </div>
+          )}
+        </div>
       )}
 
       {isLoggedIn && (

@@ -1,31 +1,16 @@
 "use client";
-import React, { useState, Suspense } from "react";
+
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { SearchParamsHandler } from "./SearchParamsHandler";
 import { SearchInput } from "./SearchInput";
 import { ProjectCard } from "./ProjectCard";
-import { projectsData, Project } from "@/data/projects";
 import { useLocale } from "next-intl";
-type Locale = "en" | "de";
-
-type TagKey =
-  | "react"
-  | "nextjs"
-  | "typescript"
-  | "tailwind"
-  | "javascript"
-  | "html"
-  | "nodejs"
-  | "css"
-  | "mongodb";
-
-type TranslationsType = {
-  [key in Locale]: {
-    [tag in TagKey]: string;
-  };
-};
+import { Locale, Project, TagKey, TranslationsType } from "./types";
+import { getProjects } from "@/lib/project";
+import { SearchParamsHandler } from "./SearchParamsHandler";
+import { Loader } from "@/components/ui/loader";
 
 const tagTranslations: TranslationsType = {
   en: {
@@ -69,32 +54,48 @@ export default function ProjectsPage() {
   const locale = useLocale() as Locale;
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const fetchedProjects = await getProjects();
+        setProjects(fetchedProjects);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    }
+    fetchProjects();
+  }, []);
 
   const tags = tagKeys.map((key) => tagTranslations[locale][key]);
 
-  const filteredProjects = projectsData.filter(
-    (project: Project) =>
-      (project.name[locale as keyof typeof project.name]
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-        project.description[locale as keyof typeof project.description]
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        project.tags.some((tag) =>
-          tag.toLowerCase().includes(searchTerm.toLowerCase())
-        )) &&
-      (!selectedTag || project.tags.includes(selectedTag))
-  );
+  const filteredProjects = projects.filter((project) => {
+    const projectName =
+      project.name[locale as keyof typeof project.name].toLowerCase();
+    const projectDesc =
+      project.description[
+        locale as keyof typeof project.description
+      ].toLowerCase();
+    const matchesSearch =
+      projectName.includes(searchTerm.toLowerCase()) ||
+      projectDesc.includes(searchTerm.toLowerCase()) ||
+      project.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+
+    return (
+      matchesSearch && (!selectedTag || project.tags.includes(selectedTag))
+    );
+  });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
     router.push(
       `/${locale}/projects?search=${encodeURIComponent(newSearchTerm)}`,
-      {
-        scroll: false,
-      }
+      { scroll: false },
     );
   };
 
@@ -107,13 +108,11 @@ export default function ProjectsPage() {
       }`,
       {
         scroll: false,
-      }
+      },
     );
   };
   const clearSearch = () => {
-    router.push(`/${locale}/projects`, {
-      scroll: false,
-    });
+    router.push(`/${locale}/projects`, { scroll: false });
     setSelectedTag(null);
     setSearchTerm("");
   };
@@ -129,7 +128,13 @@ export default function ProjectsPage() {
         {t("pageTitle")}
       </motion.h1>
 
-      <Suspense fallback={<div>{t("loading")}</div>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            <Loader />
+          </div>
+        }
+      >
         <SearchParamsHandler setSearchTerm={setSearchTerm} />
       </Suspense>
 
@@ -163,7 +168,7 @@ export default function ProjectsPage() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {filteredProjects.map((project: Project) => (
+          {filteredProjects.map((project: any) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, scale: 0.9 }}
